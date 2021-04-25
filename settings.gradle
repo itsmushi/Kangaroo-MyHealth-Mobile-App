@@ -1,0 +1,2 @@
+rootProject.name='Kangaroo New'
+include ':app'

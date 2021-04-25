@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF"
+        tools:context=".Home">
+
+
+    <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:background="#EEABCF"
+    />
+
+    <View
+            android:id="@+id/view2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#FFFFFF"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="150dp"
+           />
+
+    <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Week 11, Day 1"
+            android:textColor="@color/textHintColor"
+            android:layout_marginTop="15dp"
+            android:textSize="35sp"
+
+    />
+    <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Your baby is as big a lime"
+            android:textColor="@color/textHintColor"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/textView4"
+            android:textSize="35sp"/>
+
+    <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Countdown"
+            android:textColor="@color/textHintColor"
+            android:layout_below="@id/textView5"
+            android:layout_marginTop="10dp"
+            android:textSize="35sp"
+
+    />
+    <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="28 weeks, 6 days left"
+            android:textColor="@color/textHintColor"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/textView6"
+            android:textSize="35sp"/>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view"
+            android:id="@+id/inbox_feedback_layer"
+
+            android:orientation="horizontal">
+
+<!--        inbox and feedback-->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#FFFFFF"
+                android:layout_marginTop="50dp"
+
+                android:layout_centerHorizontal="true"
+                >
+
+            <!--        for inbox-->
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+
+
+
+                    android:orientation="vertical">
+                <ImageButton
+                        android:id="@+id/inboxBtn"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+
+                        app:srcCompat="@drawable/ic_mail"
+
+                />
+
+                <TextView
+
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Inbox"
+
+                        android:textColor="@color/textHintColor"
+                        android:textSize="20dp"
+                />
+
+
+
+            </LinearLayout>
+
+            <!--        for Feedback-->
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="110dp"
+                    android:orientation="vertical">
+                <ImageButton
+                        android:id="@+id/feedbackBtn"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+
+                        app:srcCompat="@drawable/ic_feedback"
+
+                />
+
+
+
+                <TextView
+
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Feedback"
+
+                        android:textColor="@color/textHintColor"
+                        android:textSize="20dp"
+                />
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+<!--        schedule and share-->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#FFFFFF"
+                android:layout_marginTop="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/inbox_feedback_layer"
+        >
+
+            <!--        for Schedule appointment-->
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="50dp"
+                    android:orientation="vertical">
+                <ImageButton
+                        android:id="@+id/appointmentBtn"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+
+                        app:srcCompat="@drawable/ic_appointment"
+
+                />
+
+
+
+                <TextView
+
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Appointment"
+
+                        android:textColor="@color/textHintColor"
+                        android:textSize="20dp"
+                />
+
+
+
+
+            </LinearLayout>
+
+            <!--        for Share-->
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="110dp"
+                    android:orientation="vertical">
+                <ImageButton
+                        android:id="@+id/shareBtn"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+
+                        app:srcCompat="@drawable/ic_share"
+
+                />
+
+
+                <TextView
+
+                        android:id="@+id/share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Share"
+
+                        android:textColor="@color/textHintColor"
+                        android:textSize="20dp"
+                />
+
+
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</RelativeLayout>
