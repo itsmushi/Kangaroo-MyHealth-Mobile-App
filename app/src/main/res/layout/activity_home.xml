@@ -13,7 +13,7 @@
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="230dp"
-            android:background="#EEABCF"
+            android:background="@color/homeBackgroundColor"
     />
 
     <View
@@ -34,7 +34,7 @@
             android:text="Week 11, Day 1"
             android:textColor="@color/textHintColor"
             android:layout_marginTop="15dp"
-            android:textSize="35sp"
+            android:textSize="30sp"
 
     />
     <TextView
@@ -46,7 +46,7 @@
             android:textColor="@color/textHintColor"
             android:layout_marginTop="5dp"
             android:layout_below="@id/textView4"
-            android:textSize="35sp"/>
+            android:textSize="30sp"/>
 
     <TextView
             android:id="@+id/textView6"
@@ -57,7 +57,7 @@
             android:textColor="@color/textHintColor"
             android:layout_below="@id/textView5"
             android:layout_marginTop="10dp"
-            android:textSize="35sp"
+            android:textSize="30sp"
 
     />
     <TextView
@@ -69,42 +69,30 @@
             android:textColor="@color/textHintColor"
             android:layout_marginTop="5dp"
             android:layout_below="@id/textView6"
-            android:textSize="35sp"/>
+            android:textSize="30sp"/>
 
-
+    <!--        inbox and feedback-->
     <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/view"
             android:id="@+id/inbox_feedback_layer"
-
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
             android:orientation="horizontal">
-
-<!--        inbox and feedback-->
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="#FFFFFF"
-                android:layout_marginTop="50dp"
-
-                android:layout_centerHorizontal="true"
-                >
 
             <!--        for inbox-->
             <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-
-
 
                     android:orientation="vertical">
                 <ImageButton
                         android:id="@+id/inboxBtn"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-
+                        android:layout_gravity="center"
+                        android:background="@color/homeBackgroundColor"
                         app:srcCompat="@drawable/ic_mail"
 
                 />
@@ -114,6 +102,7 @@
                         android:id="@+id/textView10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="Inbox"
 
                         android:textColor="@color/textHintColor"
@@ -129,13 +118,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_marginStart="110dp"
+                    android:layout_marginStart="100dp"
                     android:orientation="vertical">
                 <ImageButton
                         android:id="@+id/feedbackBtn"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-
+                        android:layout_gravity="center"
+                        android:background="@color/homeBackgroundColor"
                         app:srcCompat="@drawable/ic_feedback"
 
                 />
@@ -148,7 +138,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Feedback"
-
+                        android:layout_gravity="center"
                         android:textColor="@color/textHintColor"
                         android:textSize="20dp"
                 />
@@ -158,12 +148,12 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+
 
     </LinearLayout>
 <!--        schedule and share-->
         <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="#FFFFFF"
@@ -177,13 +167,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_marginStart="50dp"
+
                     android:orientation="vertical">
                 <ImageButton
                         android:id="@+id/appointmentBtn"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-
+                        android:layout_gravity="center"
+                        android:background="@color/homeBackgroundColor"
                         app:srcCompat="@drawable/ic_appointment"
 
                 />
@@ -196,7 +187,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Appointment"
-
+                        android:layout_gravity="center"
                         android:textColor="@color/textHintColor"
                         android:textSize="20dp"
                 />
@@ -211,13 +202,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_marginStart="110dp"
+                    android:layout_marginStart="100dp"
                     android:orientation="vertical">
                 <ImageButton
                         android:id="@+id/shareBtn"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-
+                        android:layout_gravity="center"
+                        android:background="@color/homeBackgroundColor"
                         app:srcCompat="@drawable/ic_share"
 
                 />
@@ -229,15 +221,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Share"
-
+                        android:layout_gravity="center"
                         android:textColor="@color/textHintColor"
                         android:textSize="20dp"
                 />
-
-
-
-
-
 
             </LinearLayout>
 

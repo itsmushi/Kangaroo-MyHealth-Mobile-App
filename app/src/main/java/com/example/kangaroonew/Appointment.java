@@ -1,6 +1,7 @@
 package com.example.kangaroonew;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
@@ -213,6 +214,13 @@ public class Appointment extends AppCompatActivity {
 
                 android.text.format.DateFormat df = new android.text.format.DateFormat();
                 appointmentDate=df.format("yyyy-MM-dd", date).toString();
+
+                //for display date user selected
+
+
+                String dateToDisplay=DateFormat.getDateInstance(DateFormat.MEDIUM).format(date);
+
+                dateButton.setText(dateToDisplay);
 
             }
         });

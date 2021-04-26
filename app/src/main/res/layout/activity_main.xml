@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:background="#EEABCF"
+        android:layout_width="match_parent" android:layout_height="match_parent">
+<RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EEABCF"
+
 
         tools:context=".MainActivity">
 
@@ -19,6 +23,8 @@
             android:layout_marginTop="10dp"
             app:srcCompat="@drawable/pregnant"
     />
+
+
 
     <TextView
             android:id="@+id/textView"
@@ -60,87 +66,93 @@
     />
 
 
-    <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:id="@+id/emailLayout"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_marginTop="25dp"
-            app:hintTextColor="@color/inboxContent"
-            android:layout_below="@+id/login"
-            app:startIconDrawable="@drawable/ic_user"
-            android:textColorHint="@color/textHintColor"
-            android:hint="email">
 
-        <com.google.android.material.textfield.TextInputEditText
+
+
+        <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-
-                android:padding="16dp"
-                android:id="@+id/email"
+                android:id="@+id/emailLayout"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/inboxContent"
-                android:maxLines="1" />
-    </com.google.android.material.textfield.TextInputLayout>
+                android:layout_margin="4dp"
+                android:layout_marginTop="25dp"
+                app:hintTextColor="@color/inboxContent"
+                android:layout_below="@+id/login"
+                app:startIconDrawable="@drawable/ic_user"
+                android:textColorHint="@color/textHintColor"
+                android:hint="email">
 
-    <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password_text_input"
-            android:layout_marginTop="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/emailLayout"
-            android:layout_margin="4dp"
-            app:hintTextColor="@color/inboxContent"
-            app:startIconDrawable="@drawable/ic_password"
-            android:textColorHint="@color/textHintColor"
-            android:hint="password">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
 
-        <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password"
-                android:padding="16dp"
+                    android:padding="16dp"
+                    android:id="@+id/email"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColor="@color/inboxContent"
+                    android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_text_input"
+                android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
-                android:inputType="textPassword"
-                android:textColor="@color/inboxContent"
-                android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/password_text_input"
-            android:id="@+id/buttons"
-            android:layout_marginEnd="10dp"
-    >
-
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/loginBtn"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                app:backgroundTint="@color/buttonBackground"
-                android:text="Login" />
+                android:layout_below="@+id/emailLayout"
+                android:layout_margin="4dp"
+                app:hintTextColor="@color/inboxContent"
+                app:startIconDrawable="@drawable/ic_password"
+                android:textColorHint="@color/textHintColor"
+                android:hint="password">
 
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/cancel_button"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:padding="16dp"
+
+                    android:layout_width="match_parent"
+                    android:inputType="textPassword"
+                    android:textColor="@color/inboxContent"
+                    android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_toStartOf="@id/loginBtn"
-                android:layout_toLeftOf="@id/loginBtn"
-                app:backgroundTint="#F8AFA5"
+                android:layout_below="@id/password_text_input"
+                android:id="@+id/buttons"
+                android:layout_marginEnd="10dp"
+        >
 
-                android:text="Cancel" />
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/loginBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    app:backgroundTint="@color/buttonBackground"
+                    android:text="Login" />
 
-    </RelativeLayout>
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancel_button"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_toStartOf="@id/loginBtn"
+                    android:layout_toLeftOf="@id/loginBtn"
+                    app:backgroundTint="#F8AFA5"
+
+                    android:text="Cancel" />
+
+        </RelativeLayout>
+
+
 
 
 
 
 
 </RelativeLayout>
+</ScrollView>

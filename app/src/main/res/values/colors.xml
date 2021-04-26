@@ -7,4 +7,5 @@
     <color name="buttonBackground">#E91E63</color>
     <color name="inboxTitles">#615D5D</color>
     <color name="inboxContent">#302F2F</color>
+    <color name="homeBackgroundColor">#EEABCF</color>
 </resources>
