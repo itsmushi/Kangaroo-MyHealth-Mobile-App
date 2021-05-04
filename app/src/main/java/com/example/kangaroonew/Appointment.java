@@ -1,14 +1,16 @@
 package com.example.kangaroonew;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.fragment.app.FragmentManager;
+import com.example.kangaroonew.models.AppointmentClass;
+import com.example.kangaroonew.models.Hospital;
+import com.example.kangaroonew.models.Staff;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -62,6 +64,9 @@ public class Appointment extends AppCompatActivity {
         setContentView(R.layout.activity_appointment);
 
         initialization();
+
+        startCheckingAppointmentStatus();
+
 
         progressBar=new ProgressDialog(this);
 
@@ -168,36 +173,44 @@ public class Appointment extends AppCompatActivity {
     }
 
     private void setAppointment(String appointmentDate, int hospitalSelected, int staffSelected, String appointmentDescription) {
-        AppointmentClass appointment=new AppointmentClass();
-        appointment.setDate(appointmentDate);
-        appointment.setHospitalId(hospitalSelected);
-        appointment.setStaffId(staffSelected);
-        appointment.setDescription(appointmentDescription);
 
-        progressBar.setTitle("Setting appointment");
-        progressBar.setMessage("Please wait...");
-        progressBar.setCanceledOnTouchOutside(true);
-        progressBar.show();
-        Call<AppointmentClass>newAppointment =jsonPlaceHolder.newAppointment(appointment);
-        
-        newAppointment.enqueue(new Callback<AppointmentClass>() {
-            @Override
-            public void onResponse(Call<AppointmentClass> call, Response<AppointmentClass> response) {
-                 Log.d("kng","creating...failed"+ response.message());
-                if(response.isSuccessful()){
-                    Log.d("kng","creating...");
-                   Toast.makeText(Appointment.this, "Appointment created!", Toast.LENGTH_SHORT).show();
-                   sendUserToHomeActivity();
+        if(TextUtils.isEmpty(appointmentDate)){
+            Toast.makeText(Appointment.this, "Please select a date", Toast.LENGTH_SHORT).show();
+        }else{
+            final AppointmentClass appointment=new AppointmentClass();
+            appointment.setDate(appointmentDate);
+            appointment.setHospitalId(hospitalSelected);
+            appointment.setStaffId(staffSelected);
+            appointment.setDescription(appointmentDescription);
+            appointment.setStatus("0");
+
+            progressBar.setTitle("Setting appointment");
+            progressBar.setMessage("Please wait...");
+            progressBar.setCanceledOnTouchOutside(true);
+            progressBar.show();
+            Call<AppointmentClass>newAppointment =jsonPlaceHolder.newAppointment(appointment);
+
+            newAppointment.enqueue(new Callback<AppointmentClass>() {
+                @Override
+                public void onResponse(Call<AppointmentClass> call, Response<AppointmentClass> response) {
+
+                    Log.d("ds","resp: "+response.message());
+                    if(response.isSuccessful()){
+
+                        startCheckingAppointmentStatus();
+                        Toast.makeText(Appointment.this, "Appointment created!", Toast.LENGTH_SHORT).show();
+                        sendUserToHomeActivity();
+                    }
+                    progressBar.dismiss();
                 }
-                progressBar.dismiss();
-            }
+                @Override
+                public void onFailure(Call<AppointmentClass> call, Throwable t) {
+                    Toast.makeText(Appointment.this, "Internal error!", Toast.LENGTH_SHORT).show();
+                    progressBar.dismiss();
+                }
+            });
+        }
 
-            @Override
-            public void onFailure(Call<AppointmentClass> call, Throwable t) {
-              Toast.makeText(Appointment.this, "Internal error!", Toast.LENGTH_SHORT).show();
-              progressBar.dismiss();
-            }
-        });
     }
 
     private void selectingDate() {
@@ -283,7 +296,15 @@ public class Appointment extends AppCompatActivity {
 
     private void sendUserToHomeActivity() {
         Intent homeActivity=new Intent(this,Home.class);
+
+
         startActivity(homeActivity);
+
         finish();
     }
+    private void startCheckingAppointmentStatus() {
+        Intent appointmentStatus=new Intent(this,AppointmentStatus.class);
+        startService(appointmentStatus);
+    }
+
 }

@@ -4,8 +4,9 @@
     <color name="colorPrimaryDark">#C63664</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="textHintColor">#2E2D2D</color>
-    <color name="buttonBackground">#E91E63</color>
+    <color name="buttonBackground">#DAABBB</color>
     <color name="inboxTitles">#615D5D</color>
     <color name="inboxContent">#302F2F</color>
     <color name="homeBackgroundColor">#EEABCF</color>
+    <color name="toolbarBackground">#95C9F1</color>
 </resources>

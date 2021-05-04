@@ -3,15 +3,26 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:background="#EEABCF"
+        android:background="#d692c2"
         android:layout_width="match_parent" android:layout_height="match_parent">
 <RelativeLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-
         tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/appBarLayout">
+        <include
+                android:id="@+id/main_page_toolbar"
+                layout="@layout/app_bar_layout"
+
+        ></include>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
             android:id="@+id/imageView"
@@ -142,7 +153,8 @@
                     android:layout_marginRight="12dp"
                     android:layout_toStartOf="@id/loginBtn"
                     android:layout_toLeftOf="@id/loginBtn"
-                    app:backgroundTint="#F8AFA5"
+                    app:backgroundTint="#EA7767"
+                    android:textColor="@color/textHintColor"
 
                     android:text="Cancel" />
 

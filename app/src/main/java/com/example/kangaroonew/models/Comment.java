@@ -1,4 +1,4 @@
-package com.example.kangaroonew;
+package com.example.kangaroonew.models;
 
 
 import com.google.gson.annotations.Expose;

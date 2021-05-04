@@ -43,7 +43,7 @@
             android:layout_alignParentEnd="true"
             android:textSize="20dp"
             android:layout_centerHorizontal="true"
-            app:backgroundTint="#E3E18D"
+            app:backgroundTint="#95C9F1"
             android:text="Choose Date" />
 
 
@@ -141,13 +141,13 @@
                 android:layout_alignParentEnd="true"
                 android:textSize="20dp"
                 android:layout_centerHorizontal="true"
-                app:backgroundTint="#A4F355"
+                app:backgroundTint="#3DBC42"
                 android:text="CONFIRM" />
 
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/cancel"
-
-
+                app:backgroundTint="#EA7767"
+                android:textColor="@color/textHintColor"
                 android:layout_marginStart="50dp"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
 
                 android:layout_toStartOf="@id/confirm"
 
-                app:backgroundTint="#F89F9F"
+
                 android:text="CANCEL" />
 
     </RelativeLayout>

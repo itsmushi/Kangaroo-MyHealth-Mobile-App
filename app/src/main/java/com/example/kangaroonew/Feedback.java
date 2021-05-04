@@ -2,14 +2,13 @@ package com.example.kangaroonew;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import com.google.android.material.button.MaterialButton;
+import com.example.kangaroonew.models.Comment;
+import com.example.kangaroonew.models.Hospital;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;

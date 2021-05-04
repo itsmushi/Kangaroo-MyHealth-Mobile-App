@@ -2,19 +2,18 @@ package com.example.kangaroonew;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.widget.Toolbar;
+import com.example.kangaroonew.models.User;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import retrofit2.Call;
@@ -23,8 +22,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.util.regex.Pattern;
-
 public class MainActivity extends AppCompatActivity {
 
 
@@ -32,14 +29,20 @@ public class MainActivity extends AppCompatActivity {
     private TextInputEditText email;
     private TextInputEditText password;
     private ProgressDialog progressBar;
+    private Toolbar mToolbar;
 
     JsonApiPlaceholder jsonPlaceHolder;
 
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mToolbar= findViewById(R.id.main_page_toolbar);
+        //setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        mToolbar.setTitle("MyHealth");
 
         progressBar=new ProgressDialog(this);
         loginBtn=(MaterialButton) findViewById(R.id.loginBtn);
@@ -61,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                sendUserToHomeActivity();
+
                 String emailText=email.getText().toString();
                 String passwordText=password.getText().toString();
 

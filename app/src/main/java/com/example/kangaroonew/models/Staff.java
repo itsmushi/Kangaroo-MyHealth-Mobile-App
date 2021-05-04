@@ -1,10 +1,11 @@
-package com.example.kangaroonew;
+package com.example.kangaroonew.models;
+
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Hospital {
+public class Staff {
 
     @SerializedName("id")
     @Expose
@@ -12,6 +13,9 @@ public class Hospital {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("hospital_id")
+    @Expose
+    private Integer hospitalId;
     @SerializedName("created_at")
     @Expose
     private Object createdAt;
@@ -33,6 +37,14 @@ public class Hospital {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getHospitalId() {
+        return hospitalId;
+    }
+
+    public void setHospitalId(Integer hospitalId) {
+        this.hospitalId = hospitalId;
     }
 
     public Object getCreatedAt() {

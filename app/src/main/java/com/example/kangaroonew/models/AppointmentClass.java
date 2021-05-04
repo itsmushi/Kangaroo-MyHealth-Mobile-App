@@ -1,4 +1,4 @@
-package com.example.kangaroonew;
+package com.example.kangaroonew.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -20,6 +20,9 @@ public class AppointmentClass {
     @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("status")
+    @Expose
+    private String status;
 
     public Integer getHospitalId() {
         return hospitalId;
@@ -49,6 +52,10 @@ public class AppointmentClass {
         return description;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -59,6 +66,10 @@ public class AppointmentClass {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
 }

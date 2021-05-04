@@ -1,5 +1,6 @@
 package com.example.kangaroonew;
 
+import com.example.kangaroonew.models.*;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -19,11 +20,13 @@ public interface JsonApiPlaceholder {
     @POST("createFeedback")
     Call<Comment> newPost(@Body Comment comment);
 
-
     @GET("hospitalStaffs/{id}")
     Call<List<Staff>> hospitalStaffs(@Path("id")int id);
 
     @POST("createAppointment")
     Call<AppointmentClass> newAppointment(@Body AppointmentClass appointment);
+
+    @GET("appointmentStatus/{id}")
+    Call<AppointmentClass> appointmentStatus(@Path("id")int id);
 
 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 public class Home extends AppCompatActivity {
 
+    public int userID=1;      //loggedIn user id
     ImageButton inboxBtn;
     ImageButton appointmentBtn;
     ImageButton feedbackBtn;
