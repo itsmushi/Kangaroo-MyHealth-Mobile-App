@@ -23,6 +23,9 @@ public class AppointmentClass {
     @SerializedName("status")
     @Expose
     private String status;
+    @SerializedName("user_id")
+    @Expose
+    private Integer userId;
 
     public Integer getHospitalId() {
         return hospitalId;
@@ -70,6 +73,14 @@ public class AppointmentClass {
 
     public String getStatus() {
         return status;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
 }

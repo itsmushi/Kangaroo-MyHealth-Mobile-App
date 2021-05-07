@@ -11,18 +11,18 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/appBarLayout">
-        <include
-                android:id="@+id/main_page_toolbar"
-                layout="@layout/app_bar_layout"
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/appBarLayout">-->
+<!--        <include-->
+<!--                android:id="@+id/main_page_toolbar"-->
+<!--                layout="@layout/app_bar_layout"-->
 
-        ></include>
+<!--        ></include>-->
 
 
-    </com.google.android.material.appbar.AppBarLayout>
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
 
     <ImageView
             android:id="@+id/imageView"

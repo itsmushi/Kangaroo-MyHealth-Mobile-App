@@ -1,6 +1,9 @@
 package com.example.kangaroonew;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,11 +11,13 @@ import android.os.Bundle;
 
 public class Home extends AppCompatActivity {
 
-    public int userID=1;      //loggedIn user id
+    public int userID;      //loggedIn user id
     ImageButton inboxBtn;
     ImageButton appointmentBtn;
     ImageButton feedbackBtn;
     ImageButton shareBtn;
+    SharedPreferences app_preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +27,9 @@ public class Home extends AppCompatActivity {
         appointmentBtn=(ImageButton)findViewById(R.id.appointmentBtn);
         feedbackBtn=(ImageButton)findViewById(R.id.feedbackBtn);
         shareBtn=(ImageButton)findViewById(R.id.shareBtn);
+
+        this.userID=getIntent().getIntExtra("userID",0);
+        startCheckingAppointmentStatus();
 
         feedbackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +69,13 @@ public class Home extends AppCompatActivity {
         Intent feedbackIntent=new Intent(this,Feedback.class);
 
         startActivity(feedbackIntent);
+    }
+
+    private void startCheckingAppointmentStatus() {
+        Log.d("df","going to");
+        Intent appointmentStatus=new Intent(this,AppointmentStatus.class);
+//        appointmentStatus.putExtra("userID",this.userID);
+        startService(appointmentStatus);
     }
 
 }

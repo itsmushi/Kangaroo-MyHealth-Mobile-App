@@ -65,9 +65,6 @@ public class Appointment extends AppCompatActivity {
 
         initialization();
 
-        startCheckingAppointmentStatus();
-
-
         progressBar=new ProgressDialog(this);
 
         progressBar.setTitle("Loading");
@@ -197,7 +194,7 @@ public class Appointment extends AppCompatActivity {
                     Log.d("ds","resp: "+response.message());
                     if(response.isSuccessful()){
 
-                        startCheckingAppointmentStatus();
+
                         Toast.makeText(Appointment.this, "Appointment created!", Toast.LENGTH_SHORT).show();
                         sendUserToHomeActivity();
                     }
@@ -302,9 +299,6 @@ public class Appointment extends AppCompatActivity {
 
         finish();
     }
-    private void startCheckingAppointmentStatus() {
-        Intent appointmentStatus=new Intent(this,AppointmentStatus.class);
-        startService(appointmentStatus);
-    }
+
 
 }

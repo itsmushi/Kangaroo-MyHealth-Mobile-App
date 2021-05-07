@@ -2,7 +2,10 @@ package com.example.kangaroonew;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.wifi.hotspot2.pps.Credential;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +25,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -30,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
     private TextInputEditText password;
     private ProgressDialog progressBar;
     private Toolbar mToolbar;
+    SharedPreferences app_preferences;
+
+    Retrofit retrofit;
+
 
     JsonApiPlaceholder jsonPlaceHolder;
 
@@ -39,33 +48,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mToolbar= findViewById(R.id.main_page_toolbar);
-        //setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        mToolbar.setTitle("MyHealth");
+//        mToolbar= findViewById(R.id.main_page_toolbar);
+//        //setSupportActionBar(mToolbar);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        mToolbar.setTitle("MyHealth");
 
-        progressBar=new ProgressDialog(this);
-        loginBtn=(MaterialButton) findViewById(R.id.loginBtn);
-        email=(TextInputEditText) findViewById(R.id.email);
-        password=(TextInputEditText) findViewById(R.id.password);
+        initialization();
 
-        Gson gson =new GsonBuilder().serializeNulls().create(); //makes gson take into account nulls when they are mentioned
-
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://kangaroobackend.herokuapp.com/api/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-
-        //create interface reference
-        jsonPlaceHolder=retrofit.create(JsonApiPlaceholder.class);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                sendUserToHomeActivity();
+//                sendUserToHomeActivity();
 
                 String emailText=email.getText().toString();
                 String passwordText=password.getText().toString();
@@ -90,7 +85,38 @@ public class MainActivity extends AppCompatActivity {
         }});
     }
 
-    private void validateUser(String email, String password) {
+    private void initialization() {
+
+        progressBar=new ProgressDialog(this);
+        loginBtn=(MaterialButton) findViewById(R.id.loginBtn);
+        email=(TextInputEditText) findViewById(R.id.email);
+        password=(TextInputEditText) findViewById(R.id.password);
+
+        Gson gson =new GsonBuilder().serializeNulls().create(); //makes gson take into account nulls when they are mentioned
+
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl("https://kangaroobackend.herokuapp.com/api/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+
+        //create interface reference
+        jsonPlaceHolder=retrofit.create(JsonApiPlaceholder.class);
+
+
+        app_preferences =PreferenceManager.getDefaultSharedPreferences(this);
+
+        app_preferences.getString("email","");
+        app_preferences.getString("password","");
+
+        validateUser(app_preferences.getString("email",""), app_preferences.getString("password",""));
+
+
+
+    }
+
+    private void validateUser(final String email, final String password) {
         //after validation
 
         progressBar.setTitle("Logging in");
@@ -110,6 +136,13 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("dfs",response.message());
                    if(response.body().getEmail()!=null){
                        progressBar.dismiss();
+
+                       SharedPreferences.Editor editor = app_preferences.edit();
+                       editor.putString("email",email);
+                       editor.putString("password",password);
+                       editor.putInt("userID",response.body().getId());
+                       editor.commit();
+
 
                        sendUserToHomeActivity();
                    }else{
@@ -135,9 +168,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void sendUserToHomeActivity() {
         Intent homeActivity=new Intent(this,Home.class);
+        homeActivity.putExtra("userID",1);
         startActivity(homeActivity);
         finish();
     }
+
+
 
 
 }
