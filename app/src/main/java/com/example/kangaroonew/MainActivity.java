@@ -57,14 +57,17 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             String status=getIntent().getExtras().getString("logout");
-            if(TextUtils.equals(status,"1")){
+            Log.d("SDf","logged out  is "+ status);
+            app_preferences =PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor editor = app_preferences.edit();
-                editor.putString("email","");
-                editor.putString("password","");
 
-                editor.commit();
+                Log.d("SDf","logged outtt");
+
+                editor.clear();
+                editor.apply();
+
                 logout=true;
-            }
+
 
         }catch (Exception e){
 

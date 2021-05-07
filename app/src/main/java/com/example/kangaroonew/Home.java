@@ -75,7 +75,7 @@ public class Home extends AppCompatActivity {
         if (item.getItemId() == R.id.logout){
             Log.d("sdf","sdf");
             Intent logoutIntent =new Intent(this,MainActivity.class);
-            logoutIntent.putExtra("logout","1");
+            logoutIntent.putExtra("logout","outt");
             startActivity(logoutIntent);
             finish();
             //codes to logout
