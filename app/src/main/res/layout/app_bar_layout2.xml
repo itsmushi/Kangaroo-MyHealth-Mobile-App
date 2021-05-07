@@ -4,7 +4,7 @@
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/appBarLayout2"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="#95C9F1"
 
         xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -13,11 +13,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/page_title"
-            android:backgroundTint="@color/colorPrimary"
-            app:menu="@menu/top_menu"/>
+
+            app:menu="@menu/top_menu2"/>
 
 
     />
 
 </com.google.android.material.appbar.AppBarLayout>
-

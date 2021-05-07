@@ -6,6 +6,7 @@
     <color name="textHintColor">#2E2D2D</color>
     <color name="buttonBackground">#DAABBB</color>
     <color name="inboxTitles">#615D5D</color>
+    <color name="inputBackground">#EFEDED</color>
     <color name="inboxContent">#302F2F</color>
     <color name="homeBackgroundColor">#EEABCF</color>
     <color name="toolbarBackground">#95C9F1</color>

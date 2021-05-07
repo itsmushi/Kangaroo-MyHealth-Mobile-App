@@ -8,6 +8,12 @@
         android:background="#EEABCF"
         tools:context=".Feedback">
 
+
+    <RelativeLayout android:layout_width="wrap_content" android:layout_height="match_parent">
+
+    </RelativeLayout>
+
+
     <View
             android:id="@+id/view4"
             android:layout_width="250dp"

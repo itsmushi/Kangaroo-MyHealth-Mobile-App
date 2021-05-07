@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private TextInputEditText password;
     private ProgressDialog progressBar;
     private Toolbar mToolbar;
+    private boolean logout=false;
     SharedPreferences app_preferences;
 
     Retrofit retrofit;
@@ -53,7 +54,26 @@ public class MainActivity extends AppCompatActivity {
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
 //        mToolbar.setTitle("MyHealth");
 
+
+        try {
+            String status=getIntent().getExtras().getString("logout");
+            if(TextUtils.equals(status,"1")){
+                SharedPreferences.Editor editor = app_preferences.edit();
+                editor.putString("email","");
+                editor.putString("password","");
+
+                editor.commit();
+                logout=true;
+            }
+
+        }catch (Exception e){
+
+        }
+
+
+
         initialization();
+
 
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -110,9 +130,9 @@ public class MainActivity extends AppCompatActivity {
         app_preferences.getString("email","");
         app_preferences.getString("password","");
 
-        validateUser(app_preferences.getString("email",""), app_preferences.getString("password",""));
-
-
+        if(!logout){
+            validateUser(app_preferences.getString("email",""), app_preferences.getString("password",""));
+        }
 
     }
 
@@ -140,11 +160,11 @@ public class MainActivity extends AppCompatActivity {
                        SharedPreferences.Editor editor = app_preferences.edit();
                        editor.putString("email",email);
                        editor.putString("password",password);
-                       editor.putInt("userID",response.body().getId());
+
                        editor.commit();
 
 
-                       sendUserToHomeActivity();
+                       sendUserToHomeActivity(response.body().getId());
                    }else{
                        progressBar.dismiss();
                        Toast.makeText(MainActivity.this, "Sorry, Incorrect credentials!", Toast.LENGTH_LONG).show();
@@ -166,9 +186,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void sendUserToHomeActivity() {
+    private void sendUserToHomeActivity(int userId) {
         Intent homeActivity=new Intent(this,Home.class);
-        homeActivity.putExtra("userID",1);
+        homeActivity.putExtra("userID",userId);
         startActivity(homeActivity);
         finish();
     }

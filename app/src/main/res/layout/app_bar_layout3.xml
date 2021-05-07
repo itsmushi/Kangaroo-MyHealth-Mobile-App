@@ -13,11 +13,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/page_title"
-            android:backgroundTint="@color/colorPrimary"
+
             app:menu="@menu/top_menu"/>
 
 
     />
 
 </com.google.android.material.appbar.AppBarLayout>
-

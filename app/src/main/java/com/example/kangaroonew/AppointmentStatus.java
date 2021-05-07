@@ -25,6 +25,7 @@ public class AppointmentStatus extends IntentService {
     private static final String ACTION_RESP="";
     JsonApiPlaceholder jsonPlaceHolder;
 
+
     boolean found=false;
 
 
@@ -36,8 +37,9 @@ public class AppointmentStatus extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
 
-//        int userID=new Home().userID;
-        int userID=14;
+        int userID=intent.getExtras().getInt("userID");
+
+        Log.d("sdf","user id "+userID);
 
 
 
@@ -63,12 +65,14 @@ public class AppointmentStatus extends IntentService {
 
                             Log.d("Ds","status is "+appointment.getStatus());
                             if(TextUtils.equals(appointment.getStatus(),"1")){   //the appointment is accepted
-//                            Intent broadcastIntent = new Intent();
-//                            broadcastIntent.setAction(AppointmentStatus.ACTION_RESP);
-//                            broadcastIntent.addCategory(Intent.CATEGORY_DEFAULT);
-//                            broadcastIntent.putExtra("resp",appointment.getId());
-//                            sendBroadcast(broadcastIntent);
-                            found=true;
+                            Intent broadcastIntent = new Intent();
+                            broadcastIntent.setAction(AppointmentStatus.ACTION_RESP);
+                            broadcastIntent.addCategory(Intent.CATEGORY_DEFAULT);
+                            broadcastIntent.putExtra("resp",appointment.getId());
+                                Log.d("Ds","status in "+appointment.getId());
+
+                            sendBroadcast(broadcastIntent);
+//                            found=true;
 //                            Log.d("SDf","broadcast sent");
 //                            stopSelf();
                         }
@@ -84,15 +88,15 @@ public class AppointmentStatus extends IntentService {
 
             try {
                 Thread.sleep(2000);
-                Log.d("SDf","waiting again");
+
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            if(found){
-                break;
-            }
+//            if(found){
+//                break;
+//            }
         }
 
 //        stopSelf();

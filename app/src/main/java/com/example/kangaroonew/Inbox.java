@@ -28,7 +28,7 @@ public class Inbox extends AppCompatActivity {
     JsonApiPlaceholder jsonPlaceHolder;
     AppointmentClass appointmentClass=new AppointmentClass();
     boolean found=false;
-    int userID=14;
+    int userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +47,11 @@ public class Inbox extends AppCompatActivity {
         //create interface reference
         jsonPlaceHolder=retrofit.create(JsonApiPlaceholder.class);
 
-        checkingInbox();
-//        IntentFilter filter = new IntentFilter(ResponseReceiver.ACTION_RESP);
-//        filter.addCategory(Intent.CATEGORY_DEFAULT);
-//        receiver = new ResponseReceiver();
-//        registerReceiver(receiver, filter);
+//        checkingInbox();
+        IntentFilter filter = new IntentFilter(ResponseReceiver.ACTION_RESP);
+        filter.addCategory(Intent.CATEGORY_DEFAULT);
+        receiver = new ResponseReceiver();
+        registerReceiver(receiver, filter);
 
 
 
@@ -108,8 +108,12 @@ public class Inbox extends AppCompatActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+//            userID= new AppointmentStatus().resp;
+            userID=intent.getExtras().getInt("resp");
+            Log.d("Ds","id is "+userID);
+//            userID=1;
 
-            final Call<AppointmentClass> appointmentClassCall=jsonPlaceHolder.oneAppointment(1);
+            final Call<AppointmentClass> appointmentClassCall=jsonPlaceHolder.oneAppointment(userID);
 
             appointmentClassCall.enqueue(new Callback<AppointmentClass>() {
                 @Override
@@ -118,8 +122,8 @@ public class Inbox extends AppCompatActivity {
                     if(response.isSuccessful()){
 
                         appointmentClass.setDate(response.body().getDate());
-                        Log.d("sdf","response is "+response.body().getDate());
-                        String txt=appointmentText.getText().toString();
+                        Log.d("sdf","response is now"+appointmentClass.getDate());
+                        String txt="Your appointment is on ";
                         appointmentText.setText(txt+appointmentClass.getDate());
 //                        unregisterReceiver(receiver);d
                     }

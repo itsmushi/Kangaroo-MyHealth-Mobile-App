@@ -11,20 +11,18 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/appBarLayout">-->
-<!--        <include-->
-<!--                android:id="@+id/main_page_toolbar"-->
-<!--                layout="@layout/app_bar_layout"-->
 
-<!--        ></include>-->
+        <include
+                android:id="@+id/toolbarr"
+                layout="@layout/app_bar_layout"
+
+        ></include>
 
 
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
 
     <ImageView
+            android:layout_below="@+id/toolbarr"
             android:id="@+id/imageView"
             android:layout_width="200dp"
             android:layout_height="200dp"
@@ -87,6 +85,7 @@
                 android:layout_margin="4dp"
                 android:layout_marginTop="25dp"
                 app:hintTextColor="@color/inboxContent"
+
                 android:layout_below="@+id/login"
                 app:startIconDrawable="@drawable/ic_user"
                 android:textColorHint="@color/textHintColor"
@@ -94,7 +93,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-
+                    android:backgroundTint="@color/inputBackground"
                     android:padding="16dp"
                     android:id="@+id/email"
                     android:layout_height="wrap_content"
@@ -118,7 +117,7 @@
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     android:padding="16dp"
-
+                    android:backgroundTint="@color/inputBackground"
                     android:layout_width="match_parent"
                     android:inputType="textPassword"
                     android:textColor="@color/inboxContent"

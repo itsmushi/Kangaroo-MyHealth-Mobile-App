@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class Home extends AppCompatActivity {
 
@@ -18,10 +22,16 @@ public class Home extends AppCompatActivity {
     ImageButton shareBtn;
     SharedPreferences app_preferences;
 
+    MaterialToolbar topAppBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        topAppBar=(MaterialToolbar)findViewById(R.id.topAppBar);
+        setSupportActionBar(topAppBar);
 
        inboxBtn=(ImageButton)findViewById(R.id.inboxBtn);
         appointmentBtn=(ImageButton)findViewById(R.id.appointmentBtn);
@@ -53,6 +63,28 @@ public class Home extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.top_menu2,menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.logout){
+            Log.d("sdf","sdf");
+            Intent logoutIntent =new Intent(this,MainActivity.class);
+            logoutIntent.putExtra("logout","1");
+            startActivity(logoutIntent);
+            finish();
+            //codes to logout
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
     private void sendToAppointmentActivity() {
         Intent appointmentIntent=new Intent(this,Appointment.class);
 
@@ -72,9 +104,9 @@ public class Home extends AppCompatActivity {
     }
 
     private void startCheckingAppointmentStatus() {
-        Log.d("df","going to");
+        Log.d("df","going to"+  userID);
         Intent appointmentStatus=new Intent(this,AppointmentStatus.class);
-//        appointmentStatus.putExtra("userID",this.userID);
+        appointmentStatus.putExtra("userID",this.userID);
         startService(appointmentStatus);
     }
 
