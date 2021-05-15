@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +31,7 @@ public class Inbox extends AppCompatActivity {
     private TextView appointmentText;
     JsonApiPlaceholder jsonPlaceHolder;
     private ProgressDialog progressBar;
+    private LinearLayout appointmentLayout;
 
     boolean found=false;
     int userID;
@@ -49,6 +52,17 @@ public class Inbox extends AppCompatActivity {
 
         //create interface reference
         jsonPlaceHolder=retrofit.create(JsonApiPlaceholder.class);
+
+        appointmentLayout=findViewById(R.id.appointmentLayout);
+
+        appointmentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendToInboxDetail();
+            }
+
+
+        });
 
         userID=getIntent().getExtras().getInt("userID");
         progressBar=new ProgressDialog(this);
@@ -100,6 +114,12 @@ public class Inbox extends AppCompatActivity {
                 }
             });
 
+    }
+
+    private void sendToInboxDetail() {
+        Intent inboxDetail=new Intent(this,InboxDetails.class);
+        inboxDetail.putExtra("userID",this.userID);
+        startActivity(inboxDetail);
     }
 
 

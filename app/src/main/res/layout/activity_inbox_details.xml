@@ -3,11 +3,18 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
+                android:background="#E8E0E0"
                 tools:context="com.example.kangaroonew.InboxDetails">
+
+    <include
+            android:id="@+id/toolbarr"
+            layout="@layout/app_bar_layout3"
+
+    ></include>
 
     <ListView
             android:id="@+id/list"
+            android:layout_below="@+id/toolbarr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp">
