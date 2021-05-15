@@ -39,7 +39,7 @@ public class Home extends AppCompatActivity {
         shareBtn=(ImageButton)findViewById(R.id.shareBtn);
 
         this.userID=getIntent().getIntExtra("userID",0);
-        startCheckingAppointmentStatus();
+//        startCheckingAppointmentStatus();
 
         feedbackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,9 +73,11 @@ public class Home extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.logout){
-            Log.d("sdf","sdf");
+
             Intent logoutIntent =new Intent(this,MainActivity.class);
             logoutIntent.putExtra("logout","outt");
+
+
             startActivity(logoutIntent);
             finish();
             //codes to logout
@@ -93,7 +95,7 @@ public class Home extends AppCompatActivity {
 
     private void sendToInboxActivity() {
         Intent inboxIntent=new Intent(this,Inbox.class);
-
+        inboxIntent.putExtra("userID",this.userID);
         startActivity(inboxIntent);
     }
 
@@ -104,10 +106,11 @@ public class Home extends AppCompatActivity {
     }
 
     private void startCheckingAppointmentStatus() {
-        Log.d("df","going to"+  userID);
-        Intent appointmentStatus=new Intent(this,AppointmentStatus.class);
-        appointmentStatus.putExtra("userID",this.userID);
-        startService(appointmentStatus);
+//        Log.d("df","going to"+  userID);
+//        Intent appointmentStatus=new Intent(this,AppointmentStatus.class);
+//        appointmentStatus.putExtra("userID",this.userID);
+
+//        startService(appointmentStatus);
     }
 
 }

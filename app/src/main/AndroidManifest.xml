@@ -12,6 +12,9 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
+        <activity android:name=".InboxDetails">
+        </activity>
+
         <service
                 android:name=".AppointmentStatus"
                 android:exported="false">
