@@ -3,12 +3,14 @@ package com.example.kangaroonew;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.net.wifi.hotspot2.pps.Credential;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressDialog progressBar;
     private Toolbar mToolbar;
     private boolean logout=false;
+    private TextView forgetPassword;
     SharedPreferences app_preferences;
 
     Retrofit retrofit;
@@ -73,11 +76,15 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
-
         initialization();
 
-
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+                startActivity(browserIntent);
+            }
+        });
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
         loginBtn=(MaterialButton) findViewById(R.id.loginBtn);
         email=(TextInputEditText) findViewById(R.id.email);
         password=(TextInputEditText) findViewById(R.id.password);
+        forgetPassword=(TextView) findViewById(R.id.forgetPassword);
+
+
 
         Gson gson =new GsonBuilder().serializeNulls().create(); //makes gson take into account nulls when they are mentioned
 

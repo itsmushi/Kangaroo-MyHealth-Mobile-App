@@ -31,18 +31,9 @@
                     android:layout_below="@id/toolbarr"
                     android:layout_width="match_parent"
                     android:layout_height="230dp"
-                    android:background="@color/homeBackgroundColor"
+                    android:background="@color/homeBackgroundColor2"
             />
 
-            <View
-                    android:id="@+id/view2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="#FFFFFF"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="150dp"
-                   />
 
             <TextView
                     android:id="@+id/textView4"
@@ -110,7 +101,7 @@
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:layout_gravity="center"
-                                android:background="@color/homeBackgroundColor"
+                                android:background="@color/homeBackgroundColor2"
                                 app:srcCompat="@drawable/ic_mail"
 
                         />
@@ -143,7 +134,7 @@
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:layout_gravity="center"
-                                android:background="@color/homeBackgroundColor"
+                                android:background="@color/homeBackgroundColor2"
                                 app:srcCompat="@drawable/ic_feedback"
 
                         />
@@ -192,7 +183,7 @@
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:layout_gravity="center"
-                                android:background="@color/homeBackgroundColor"
+                                android:background="@color/homeBackgroundColor2"
                                 app:srcCompat="@drawable/ic_appointment"
 
                         />
@@ -227,7 +218,7 @@
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:layout_gravity="center"
-                                android:background="@color/homeBackgroundColor"
+                                android:background="@color/homeBackgroundColor2"
                                 app:srcCompat="@drawable/ic_share"
 
                         />

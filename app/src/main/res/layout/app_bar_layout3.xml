@@ -4,7 +4,7 @@
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/appBarLayout2"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="#95C9F1"
 
         xmlns:android="http://schemas.android.com/apk/res/android">
 

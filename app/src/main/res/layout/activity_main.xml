@@ -140,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    app:backgroundTint="@color/buttonBackground"
+                    app:backgroundTint="#7825C6"
                     android:text="Login" />
 
             <com.google.android.material.button.MaterialButton
@@ -152,12 +152,28 @@
                     android:layout_marginRight="12dp"
                     android:layout_toStartOf="@id/loginBtn"
                     android:layout_toLeftOf="@id/loginBtn"
-                    app:backgroundTint="#EA7767"
+                    app:backgroundTint="#7825C6"
                     android:textColor="@color/textHintColor"
 
                     android:text="Cancel" />
 
         </RelativeLayout>
+    <TextView
+            android:id="@+id/forgetPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Forget Passoword?"
+            android:textSize="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+
+            android:layout_centerHorizontal="true"
+            android:textColor="#1E4FE3"
+            android:layout_below="@+id/buttons"
+    />
+
+
 
 
 

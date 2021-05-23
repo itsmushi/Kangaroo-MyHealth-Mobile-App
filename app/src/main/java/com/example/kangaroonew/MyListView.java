@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 public class MyListView extends ArrayAdapter<String> {
 
-    private final Activity context;
-    private final String[] maintitle;
-    private final String[] subtitle;
-    private final String[] subtitle2;
+    private Activity context;
+    private  String[] maintitle;
+    private  String[] subtitle;
+    private  String[] subtitle2;
 
 
     public MyListView(Activity context, String[] maintitle, String[] subtitle, String[] subtitle2) {
@@ -28,6 +28,12 @@ public class MyListView extends ArrayAdapter<String> {
         this.subtitle2 = subtitle2;
 
 
+    }
+
+    public void updateItems(String[] maintitle, String[] subtitle, String[] subtitle2){
+        this.maintitle = maintitle;
+        this.subtitle = subtitle;
+        this.subtitle2 = subtitle2;
     }
 
     public View getView(int position, View view, ViewGroup parent) {
