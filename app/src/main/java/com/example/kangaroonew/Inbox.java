@@ -58,7 +58,7 @@ public class Inbox extends AppCompatActivity {
         appointmentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendToInboxDetail();
+//                sendToInboxDetail();
             }
 
 
@@ -66,23 +66,17 @@ public class Inbox extends AppCompatActivity {
 
         userID=getIntent().getExtras().getInt("userID");
 
-        View progressBar = findViewById(R.id.delete_progress);
-//        dialog.cancel();
-        progressBar.setVisibility(View.VISIBLE);
+
+        progressBar=new ProgressDialog(this);
+        progressBar.setTitle("Loading");
+        progressBar.setMessage("Please wait...");
+        progressBar.setCanceledOnTouchOutside(true);
+        progressBar.show();
+
+       Log.d("sd","yes"+ String.valueOf(progressBar.isShowing()));
+
         checkingInbox();
-
-        progressBar.setVisibility(View.GONE);
-
-
-
-//        progressBar=new ProgressDialog(this);
-//        progressBar.setTitle("Loading");
-//        progressBar.setMessage("Please wait...");
-//        progressBar.setCanceledOnTouchOutside(true);
-//        progressBar.show();
-
-//        checkingInbox();
-//        progressBar.dismiss();
+        progressBar.dismiss();
 
 
     }
