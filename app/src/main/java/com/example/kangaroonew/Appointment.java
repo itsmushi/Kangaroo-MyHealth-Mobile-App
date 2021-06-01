@@ -114,7 +114,7 @@ public class Appointment extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 for(Staff staff: staffs1) {
-                    if (staff.getName().equals(staffAutocomplete.getText().toString())) {    //this is the staff user selected
+                    if ((staff.getFname()+" "+staff.getLname()).equals(staffAutocomplete.getText().toString())) {    //this is the staff user selected
                         staffSelected=staff.getId();
                         break;
                     }
@@ -276,7 +276,7 @@ public class Appointment extends AppCompatActivity {
                     if(response.isSuccessful()){
                         staffs1=response.body();
                         for(Staff staff: staffs1){
-                           staffList.add(staff.getName());
+                           staffList.add(staff.getFname()+" "+staff.getLname());
                         }
                         progressBar.dismiss();
                     }

@@ -10,9 +10,12 @@ public class Staff {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("name")
+    @SerializedName("fname")
     @Expose
-    private String name;
+    private String fname;
+    @SerializedName("lname")
+    @Expose
+    private String lname;
     @SerializedName("hospital_id")
     @Expose
     private Integer hospitalId;
@@ -31,12 +34,20 @@ public class Staff {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFname() {
+        return fname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFname(String name) {
+        this.fname = name;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public void setLname(String name) {
+        this.lname = name;
     }
 
     public Integer getHospitalId() {

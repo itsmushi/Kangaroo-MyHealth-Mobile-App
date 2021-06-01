@@ -65,11 +65,24 @@ public class Inbox extends AppCompatActivity {
         });
 
         userID=getIntent().getExtras().getInt("userID");
-        progressBar=new ProgressDialog(this);
 
-
+        View progressBar = findViewById(R.id.delete_progress);
+//        dialog.cancel();
+        progressBar.setVisibility(View.VISIBLE);
         checkingInbox();
 
+        progressBar.setVisibility(View.GONE);
+
+
+
+//        progressBar=new ProgressDialog(this);
+//        progressBar.setTitle("Loading");
+//        progressBar.setMessage("Please wait...");
+//        progressBar.setCanceledOnTouchOutside(true);
+//        progressBar.show();
+
+//        checkingInbox();
+//        progressBar.dismiss();
 
 
     }
@@ -82,10 +95,7 @@ public class Inbox extends AppCompatActivity {
 
                 @Override
                 public void onResponse(Call<List<AppointmentClass>> call, Response<List<AppointmentClass>> response) {
-                    progressBar.setTitle("Loading");
-                    progressBar.setMessage("Please wait...");
-                    progressBar.setCanceledOnTouchOutside(true);
-                    progressBar.show();
+
                     if(response.isSuccessful()){
 
                         List<AppointmentClass> appointmentList=response.body();
@@ -103,7 +113,7 @@ public class Inbox extends AppCompatActivity {
                             appointmentText.setText("There is no appointment to attend yet!");
                         }
                     }
-                    progressBar.dismiss();
+
                 }
 
                 @Override

@@ -30,6 +30,7 @@
             android:cropToPadding="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+
             app:srcCompat="@drawable/pregnant"
     />
 
@@ -140,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    app:backgroundTint="#7825C6"
+                    app:backgroundTint="#d692c2"
                     android:text="Login" />
 
             <com.google.android.material.button.MaterialButton
@@ -152,7 +153,7 @@
                     android:layout_marginRight="12dp"
                     android:layout_toStartOf="@id/loginBtn"
                     android:layout_toLeftOf="@id/loginBtn"
-                    app:backgroundTint="#7825C6"
+                    app:backgroundTint="#d692c2"
                     android:textColor="@color/textHintColor"
 
                     android:text="Cancel" />

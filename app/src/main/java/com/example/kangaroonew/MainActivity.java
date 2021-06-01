@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://kangaroobackend.herokuapp.com/forget-password"));
                 startActivity(browserIntent);
             }
         });
@@ -143,8 +143,16 @@ public class MainActivity extends AppCompatActivity {
         app_preferences.getString("email","");
         app_preferences.getString("password","");
 
+       String emailTemp= app_preferences.getString("email","");
+       String passwordTemp= app_preferences.getString("password","");
+
         if(!logout){
-            validateUser(app_preferences.getString("email",""), app_preferences.getString("password",""));
+            if(TextUtils.equals(emailTemp,"") ){
+
+            }else{
+                validateUser(app_preferences.getString("email",""), app_preferences.getString("password",""));
+            }
+
         }
 
     }

@@ -9,9 +9,12 @@ public class User {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("name")
+    @SerializedName("fname")
     @Expose
-    private String name;
+    private String fname;
+    @SerializedName("lname")
+    @Expose
+    private String lname;
     @SerializedName("email")
     @Expose
     private String email;
@@ -36,12 +39,20 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFname() {
+        return fname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFname(String name) {
+        this.fname = name;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public void setLname(String name) {
+        this.lname = name;
     }
 
     public String getEmail() {

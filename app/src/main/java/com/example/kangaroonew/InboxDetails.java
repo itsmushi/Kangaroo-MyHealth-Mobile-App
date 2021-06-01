@@ -37,9 +37,6 @@ public class InboxDetails extends AppCompatActivity {
     String[] subtitle2={"more info","agaoin morenoww"};
     String[] date2;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,54 +63,51 @@ public class InboxDetails extends AppCompatActivity {
 
 
         final Call<List<AppointmentClass>> appointmentList=jsonPlaceHolder.userAppointments(userID);
-        appointmentList.enqueue(new Callback<List<AppointmentClass>>() {
-
-            @Override
-            public void onResponse(Call<List<AppointmentClass>> call, Response<List<AppointmentClass>> response) {
-                progressBar.setTitle("Loading");
-                progressBar.setMessage("Please wait...");
-                progressBar.setCanceledOnTouchOutside(true);
-                progressBar.show();
-                if(response.isSuccessful()){
-
-                    List<AppointmentClass> appointmentList=response.body();
-                    for(AppointmentClass appointment: appointmentList){
-                        dateList.add(appointment.getDate());
-                        subtitleList.add("Appointment at "+appointment.getHospitalId()+" attended with "+appointment.getStaffId());
-                        subtitleList2.add("Summary: "+appointment.getStatus());
-
-                    }
-
-//                    date2 = new String[dateList.size()];
-//                    dateList.toArray(date2);
-
-//                    date = new String[dateList.size()];
-//                    dateList.toArray(date);
+//        appointmentList.enqueue(new Callback<List<AppointmentClass>>() {
 //
-//                    subtitle=new String[subtitleList.size()];
-//                    subtitleList.toArray(subtitle);
+//            @Override
+//            public void onResponse(Call<List<AppointmentClass>> call, Response<List<AppointmentClass>> response) {
+//                progressBar.setTitle("Loading");
+//                progressBar.setMessage("Please wait...");
+//                progressBar.setCanceledOnTouchOutside(true);
+//                progressBar.show();
+//                if(response.isSuccessful()){
 //
-//                    subtitle2=new String[subtitleList2.size()];
-//                    subtitleList2.toArray(subtitle2);
-
-
-
-
-                }
-                progressBar.dismiss();
-            }
-
-            @Override
-            public void onFailure(Call<List<AppointmentClass>> call, Throwable t) {
-
-                Toast.makeText(InboxDetails.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
-
-            }
-
-        });
-
-
-
+//                    List<AppointmentClass> appointmentList=response.body();
+//                    for(AppointmentClass appointment: appointmentList){
+//                        dateList.add(appointment.getDate());
+//                        subtitleList.add("Appointment at "+appointment.getHospitalId()+" attended with "+appointment.getStaffId());
+//                        subtitleList2.add("Summary: "+appointment.getStatus());
+//
+//                    }
+//
+////                    date2 = new String[dateList.size()];
+////                    dateList.toArray(date2);
+//
+////                    date = new String[dateList.size()];
+////                    dateList.toArray(date);
+////
+////                    subtitle=new String[subtitleList.size()];
+////                    subtitleList.toArray(subtitle);
+////
+////                    subtitle2=new String[subtitleList2.size()];
+////                    subtitleList2.toArray(subtitle2);
+//
+//
+//
+//
+//                }
+//                progressBar.dismiss();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<AppointmentClass>> call, Throwable t) {
+//
+//                Toast.makeText(InboxDetails.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
+//
+//            }
+//
+//        });
 
 
     }
@@ -145,7 +139,6 @@ public class InboxDetails extends AppCompatActivity {
 
                     subtitle2=new String[subtitleList2.size()];
                     subtitleList2.toArray(subtitle2);
-
 
 
                 }
