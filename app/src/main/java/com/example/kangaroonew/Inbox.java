@@ -86,17 +86,8 @@ public class Inbox extends AppCompatActivity {
 
         userID=getIntent().getExtras().getInt("userID");
 
-
-        progressBar=new ProgressDialog(this);
-        progressBar.setTitle("Loading");
-        progressBar.setMessage("Please wait...");
-        progressBar.setCanceledOnTouchOutside(true);
-        progressBar.show();
-
-       Log.d("sd","yes"+ String.valueOf(progressBar.isShowing()));
-
         checkingInbox();
-        progressBar.dismiss();
+
 
 
     }
@@ -104,7 +95,11 @@ public class Inbox extends AppCompatActivity {
 
 
     private void checkingInbox() {
-
+        progressBar=new ProgressDialog(this);
+        progressBar.setTitle("Loading");
+        progressBar.setMessage("Please wait...");
+        progressBar.setCanceledOnTouchOutside(true);
+        progressBar.show();
          //checking if any of the user's appointment has been accepted
             final Call<List<AppointmentClass>> appointmentList=jsonPlaceHolder.userAppointments(userID);
             appointmentList.enqueue(new Callback<List<AppointmentClass>>() {
@@ -129,6 +124,7 @@ public class Inbox extends AppCompatActivity {
                             appointmentText.setText("There is no appointment to attend yet!");
                         }
                     }
+                    progressBar.dismiss();
 
                 }
 
@@ -136,7 +132,8 @@ public class Inbox extends AppCompatActivity {
                 public void onFailure(Call<List<AppointmentClass>> call, Throwable t) {
                     found=true;
                     Toast.makeText(Inbox.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
-                    Log.d("Ds","status is NOT HERE");
+//                    Log.d("Ds","status is NOT HERE");
+                    progressBar.dismiss();
                 }
             });
 
