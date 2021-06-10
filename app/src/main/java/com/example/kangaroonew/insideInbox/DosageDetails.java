@@ -1,8 +1,10 @@
 package com.example.kangaroonew.insideInbox;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.kangaroonew.JsonApiPlaceholder;
@@ -22,6 +24,7 @@ import java.util.List;
 public class DosageDetails extends AppCompatActivity {
     int userID;
     JsonApiPlaceholder jsonPlaceHolder;
+    private ProgressDialog progressBar;
 
     String[] mobileArray = {"Android","IPhone","WindowsMobile","Blackberry",
             "WebOS","Ubuntu","Windows7","Max OS X"};
@@ -53,6 +56,12 @@ public class DosageDetails extends AppCompatActivity {
     }
 
     private void checkingDosage(final Context context) {
+        progressBar=new ProgressDialog(this);
+
+        progressBar.setTitle("Loading");
+        progressBar.setMessage("Please wait...");
+        progressBar.setCanceledOnTouchOutside(true);
+        progressBar.show();
 //        final Call<List<BraceletData>> braceletData=jsonPlaceHolder.braceletData(userID);
         final Call<List<DosageData>> dosageData=jsonPlaceHolder.dosageData(userID);
 
@@ -79,11 +88,15 @@ public class DosageDetails extends AppCompatActivity {
 
                     ListView listView = (ListView) findViewById(R.id.mobile_list);
                     listView.setAdapter(adapter);
+                    progressBar.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<List<DosageData>> call, Throwable t) {
+                progressBar.dismiss();
+                Toast.makeText(DosageDetails.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
+//                Log.d("Ds","status is NOT HERE");
 
             }
         });

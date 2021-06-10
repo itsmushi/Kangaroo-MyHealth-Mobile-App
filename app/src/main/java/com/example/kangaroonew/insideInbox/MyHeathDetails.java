@@ -1,8 +1,10 @@
 package com.example.kangaroonew.insideInbox;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.kangaroonew.JsonApiPlaceholder;
@@ -23,6 +25,7 @@ public class MyHeathDetails extends AppCompatActivity {
 
     int userID;
     JsonApiPlaceholder jsonPlaceHolder;
+    private ProgressDialog progressBar;
 
     String[] mobileArray;
 //    = {"Android","IPhone","WindowsMobile","Blackberry",
@@ -54,6 +57,12 @@ checkingBracelet(this);
     }
 
     private void checkingBracelet(final Context context) {
+        progressBar=new ProgressDialog(this);
+
+        progressBar.setTitle("Loading");
+        progressBar.setMessage("Please wait...");
+        progressBar.setCanceledOnTouchOutside(true);
+        progressBar.show();
 //        final Call<List<AppointmentClass>> appointmentList=jsonPlaceHolder.userAppointments(userID);
         final Call<List<BraceletData>> braceletData=jsonPlaceHolder.braceletData(userID);
         braceletData.enqueue(new Callback<List<BraceletData>>() {
@@ -80,12 +89,15 @@ checkingBracelet(this);
 
                     ListView listView = (ListView) findViewById(R.id.mobile_list);
                     listView.setAdapter(adapter);
+                    progressBar.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<List<BraceletData>> call, Throwable t) {
-
+                progressBar.dismiss();
+                Toast.makeText(MyHeathDetails.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
+//                Log.d("Ds","status is NOT HERE");
             }
         });
     }

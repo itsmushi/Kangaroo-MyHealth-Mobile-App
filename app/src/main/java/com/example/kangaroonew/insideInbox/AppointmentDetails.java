@@ -1,5 +1,6 @@
 package com.example.kangaroonew.insideInbox;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,6 +25,7 @@ import java.util.List;
 public class AppointmentDetails extends AppCompatActivity {
     int userID;
     JsonApiPlaceholder jsonPlaceHolder;
+    private ProgressDialog progressBar;
     String[] mobileArray;
 //    = {"Android","IPhone","WindowsMobile","Blackberry",
 //            "WebOS","Ubuntu","Windows7","Max OS X"};
@@ -58,6 +60,12 @@ public class AppointmentDetails extends AppCompatActivity {
 
 
     private void checkingAppointments(final Context context) {
+        progressBar=new ProgressDialog(this);
+
+        progressBar.setTitle("Loading");
+        progressBar.setMessage("Please wait...");
+        progressBar.setCanceledOnTouchOutside(true);
+        progressBar.show();
 
 
         final Call<List<AppointmentClass>> appointmentList=jsonPlaceHolder.userAppointments(userID);
@@ -88,13 +96,8 @@ public class AppointmentDetails extends AppCompatActivity {
 
                         //set temp to empty for next loop
                         temp="";
-                        Log.d("Ds","status is "+appointment.getStatus());
-//                        if(TextUtils.equals(appointment.getStatus(),"1")){//the appointment is accepted
-//                            Log.d("sdf","response is "+appointment.getDate());
-//                            String txt="Your appointment is on ";
-//                            appointmentText.setText(txt+appointment.getDate());
-//                            found=true;
-//                        }
+
+
 
                     }
 
@@ -104,15 +107,16 @@ public class AppointmentDetails extends AppCompatActivity {
 
                     ListView listView = (ListView) findViewById(R.id.mobile_list);
                     listView.setAdapter(adapter);
+                    progressBar.dismiss();
 
                 }
             }
 
             @Override
             public void onFailure(Call<List<AppointmentClass>> call, Throwable t) {
-
+                progressBar.dismiss();
                 Toast.makeText(AppointmentDetails.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
-                Log.d("Ds","status is NOT HERE");
+//                Log.d("Ds","status is NOT HERE");
             }
         });
 
