@@ -35,4 +35,10 @@ public interface JsonApiPlaceholder {
     @GET("userAppointments/{id}")
     Call<List<AppointmentClass>> userAppointments(@Path("id")int id);
 
+    @GET("userBraceletData/{id}")
+    Call<List<BraceletData>> braceletData(@Path("id")int id);
+
+    @GET("userDosage/{id}")
+    Call<List<DosageData>> dosageData(@Path("id")int id);
+
 }

@@ -14,6 +14,9 @@ public class AppointmentClass {
     @SerializedName("date")
     @Expose
     private String date;
+    @SerializedName("appointment_time")
+    @Expose
+    private String appointment_time;
     @SerializedName("description")
     @Expose
     private String description;
@@ -83,4 +86,11 @@ public class AppointmentClass {
         this.userId = userId;
     }
 
+    public String getAppointment_time() {
+        return appointment_time;
+    }
+
+    public void setAppointment_time(String appointment_time) {
+        this.appointment_time = appointment_time;
+    }
 }
