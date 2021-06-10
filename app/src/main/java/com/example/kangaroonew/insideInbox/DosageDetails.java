@@ -1,5 +1,6 @@
 package com.example.kangaroonew.insideInbox;
 
+import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,5 +41,9 @@ public class DosageDetails extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.mobile_list);
         listView.setAdapter(adapter);
+    }
+
+    private void checkingAppointments(final Context context) {
+        
     }
 }

@@ -59,7 +59,7 @@ public class AppointmentDetails extends AppCompatActivity {
 
     private void checkingAppointments(final Context context) {
 
-        //checking if any of the user's appointment has been accepted
+
         final Call<List<AppointmentClass>> appointmentList=jsonPlaceHolder.userAppointments(userID);
         appointmentList.enqueue(new Callback<List<AppointmentClass>>() {
 
