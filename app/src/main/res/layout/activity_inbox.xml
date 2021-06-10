@@ -110,7 +110,7 @@
         ></TextView>
         <TextView
 
-                android:text="Here are  the results from your last..."
+                android:text="See your health status details here"
                 android:textSize="20dp"
                 android:id="@+id/myhealthtext"
                 android:height="100dp"
@@ -142,7 +142,7 @@
         ></TextView>
         <TextView
 
-                android:text="Remminding you to take  your afternoon suppliments"
+                android:text="Dosages you are taking "
                 android:textSize="20dp"
                 android:id="@+id/dosagetext"
                 android:height="100dp"
