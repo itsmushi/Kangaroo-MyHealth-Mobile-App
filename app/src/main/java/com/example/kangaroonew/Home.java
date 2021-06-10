@@ -89,7 +89,7 @@ public class Home extends AppCompatActivity {
 
     private void sendToAppointmentActivity() {
         Intent appointmentIntent=new Intent(this,Appointment.class);
-
+appointmentIntent.putExtra("userID",this.userID);
         startActivity(appointmentIntent);
     }
 

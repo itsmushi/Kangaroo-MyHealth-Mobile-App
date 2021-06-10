@@ -13,6 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.example.kangaroonew.insideInbox.AppointmentDetails;
+import com.example.kangaroonew.insideInbox.DosageDetails;
+import com.example.kangaroonew.insideInbox.MyHeathDetails;
 import com.example.kangaroonew.models.AppointmentClass;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -29,6 +32,8 @@ import static java.lang.Integer.parseInt;
 public class Inbox extends AppCompatActivity {
 
     private TextView appointmentText;
+    private TextView myhealthText;
+    private TextView dosageText;
     JsonApiPlaceholder jsonPlaceHolder;
     private ProgressDialog progressBar;
     private LinearLayout appointmentLayout;
@@ -42,6 +47,8 @@ public class Inbox extends AppCompatActivity {
         setContentView(R.layout.activity_inbox);
 
         appointmentText=findViewById(R.id.appointmentText);
+        myhealthText=findViewById(R.id.myhealthtext);
+        dosageText=findViewById(R.id.dosagetext);
 
         Gson gson =new GsonBuilder().serializeNulls().create(); //makes gson take into account nulls when they are mentioned
         Retrofit retrofit = new Retrofit.Builder()
@@ -58,10 +65,23 @@ public class Inbox extends AppCompatActivity {
         appointmentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                sendToInboxDetail();
+                sendToAppointmentDetails();
             }
 
 
+        });
+        myhealthText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendToMyHealthDetails();
+            }
+        });
+
+        dosageText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendToDosageDetails();
+            }
         });
 
         userID=getIntent().getExtras().getInt("userID");
@@ -80,6 +100,8 @@ public class Inbox extends AppCompatActivity {
 
 
     }
+
+
 
     private void checkingInbox() {
 
@@ -120,8 +142,20 @@ public class Inbox extends AppCompatActivity {
 
     }
 
-    private void sendToInboxDetail() {
-        Intent inboxDetail=new Intent(this,InboxDetails.class);
+    private void sendToAppointmentDetails() {
+        Intent inboxDetail=new Intent(this, AppointmentDetails.class);
+        inboxDetail.putExtra("userID",this.userID);
+        startActivity(inboxDetail);
+    }
+
+    private void sendToMyHealthDetails() {
+        Intent inboxDetail=new Intent(this, MyHeathDetails.class);
+        inboxDetail.putExtra("userID",this.userID);
+        startActivity(inboxDetail);
+    }
+
+    private void sendToDosageDetails(){
+        Intent inboxDetail=new Intent(this, DosageDetails.class);
         inboxDetail.putExtra("userID",this.userID);
         startActivity(inboxDetail);
     }

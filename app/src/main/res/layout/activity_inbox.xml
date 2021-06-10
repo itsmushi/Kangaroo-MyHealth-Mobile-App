@@ -112,6 +112,7 @@
 
                 android:text="Here are  the results from your last..."
                 android:textSize="20dp"
+                android:id="@+id/myhealthtext"
                 android:height="100dp"
                 android:layout_marginTop="5dp"
                 android:paddingStart="20dp"
@@ -143,6 +144,7 @@
 
                 android:text="Remminding you to take  your afternoon suppliments"
                 android:textSize="20dp"
+                android:id="@+id/dosagetext"
                 android:height="100dp"
                 android:layout_marginTop="5dp"
                 android:paddingStart="20dp"

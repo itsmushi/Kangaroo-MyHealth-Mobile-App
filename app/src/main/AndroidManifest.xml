@@ -12,7 +12,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".InboxDetails">
+        <activity android:name=".insideInbox.DosageDetails">
+        </activity>
+        <activity android:name=".insideInbox.MyHeathDetails">
+        </activity>
+        <activity android:name=".insideInbox.AppointmentDetails">
         </activity>
 
         <service

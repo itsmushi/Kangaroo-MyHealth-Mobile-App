@@ -56,6 +56,7 @@ public class Appointment extends AppCompatActivity {
     private int hospitalSelected;
     private int staffSelected;
     private ProgressDialog progressBar;
+    private int userID;
 
 
     @Override
@@ -64,7 +65,7 @@ public class Appointment extends AppCompatActivity {
         setContentView(R.layout.activity_appointment);
 
         initialization();
-
+        userID=getIntent().getExtras().getInt("userID");
         progressBar=new ProgressDialog(this);
 
         progressBar.setTitle("Loading");
@@ -180,6 +181,7 @@ public class Appointment extends AppCompatActivity {
             appointment.setStaffId(staffSelected);
             appointment.setDescription(appointmentDescription);
             appointment.setStatus("0");
+            appointment.setUserId(userID);
 
             progressBar.setTitle("Setting appointment");
             progressBar.setMessage("Please wait...");
@@ -191,7 +193,7 @@ public class Appointment extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<AppointmentClass> call, Response<AppointmentClass> response) {
 
-                    Log.d("ds","resp: "+response.message());
+//                    Log.d("ds","resp: "+response.message());
                     if(response.isSuccessful()){
 
 
