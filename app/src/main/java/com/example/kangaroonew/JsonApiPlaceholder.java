@@ -23,6 +23,10 @@ public interface JsonApiPlaceholder {
     @GET("hospitalStaffs/{id}")
     Call<List<Staff>> hospitalStaffs(@Path("id")int id);
 
+    @GET("/oneStaff/{id}")
+    Call<Staff> staffDetails(@Path("id")int id);
+
+
     @POST("createAppointment")
     Call<AppointmentClass> newAppointment(@Body AppointmentClass appointment);
 

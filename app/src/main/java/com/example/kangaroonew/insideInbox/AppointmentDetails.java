@@ -13,6 +13,7 @@ import com.example.kangaroonew.Inbox;
 import com.example.kangaroonew.JsonApiPlaceholder;
 import com.example.kangaroonew.R;
 import com.example.kangaroonew.models.AppointmentClass;
+import com.example.kangaroonew.models.Staff;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import retrofit2.Call;
@@ -21,9 +22,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.io.IOException;
 import java.util.List;
 public class AppointmentDetails extends AppCompatActivity {
     int userID;
+    String name="";
     JsonApiPlaceholder jsonPlaceHolder;
     private ProgressDialog progressBar;
     String[] mobileArray;
@@ -45,6 +48,7 @@ public class AppointmentDetails extends AppCompatActivity {
                 .build();
 
         jsonPlaceHolder=retrofit.create(JsonApiPlaceholder.class);
+
 
         checkingAppointments(this);
 
@@ -83,7 +87,7 @@ public class AppointmentDetails extends AppCompatActivity {
                     for(AppointmentClass appointment: appointmentList){
                         temp="Appointment at ";
                         temp+=appointment.getHospitalId().toString();  //send to API to get names values
-                        temp+=" with "+appointment.getStaffId();
+                        temp+=" with "+appointment.getStaffId() ;
                         temp+="\n";
                         temp+="Description: "+"\n";
                         temp+=appointment.getDescription();
@@ -119,6 +123,43 @@ public class AppointmentDetails extends AppCompatActivity {
 //                Log.d("Ds","status is NOT HERE");
             }
         });
+
+
+
+
+    }
+
+
+    private String getStaffName(int id){
+        final Call<Staff> staff=jsonPlaceHolder.staffDetails(id);
+
+        try {
+            Response<Staff> response= staff.execute();
+            Log.d("d","error here11");
+            Staff staff1=response.body();
+                 name=staff1.getFname()+" "+staff1.getLname();
+            Log.d("d","error here22");
+
+        } catch (IOException e) {
+            Log.d("d","error here");
+            e.printStackTrace();
+        }
+//        staff.enqueue(new Callback<Staff>() {
+//            @Override
+//            public void onResponse(Call<Staff> call, Response<Staff> response) {
+//                if(response.isSuccessful()){
+//                    Staff staff1=response.body();
+//                 name=staff1.getFname()+" "+staff1.getLname();
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Staff> call, Throwable t) {
+//
+//            }
+//        });
+        return name;
 
     }
 }

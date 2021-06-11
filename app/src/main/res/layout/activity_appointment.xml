@@ -57,6 +57,26 @@
                 app:backgroundTint="#95C9F1"
                 android:text="Choose Date" />
 
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/chooseTime"
+            android:layout_margin="10dp"
+            app:icon="@drawable/ic_time"
+            android:layout_gravity="center"
+            app:iconGravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true"
+            app:backgroundTint="#95C9F1"
+            android:text="Pick Time" />
+    <TimePicker
+            android:id="@+id/timePicker1"
+            android:layout_width="wrap_content"
+            android:visibility="visible"
+
+            android:layout_height="wrap_content" />
+
 
         <LinearLayout
                 android:layout_width="match_parent"

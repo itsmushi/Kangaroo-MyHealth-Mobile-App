@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.TimePicker;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,15 +34,18 @@ public class Appointment extends AppCompatActivity {
 
     MaterialDatePicker<Long> datePicker;
     MaterialButton dateButton;
+    MaterialButton timeButton;
     MaterialButton confirmButton;
     MaterialButton cancelButton;
     private String appointmentDate;
+    private TimePicker timePicker1;
 
     TextInputLayout hospitalTextInput;
     AutoCompleteTextView hospitalAutocomplete;
     ArrayList hospitalList;
     List<Hospital> hospitals1;
     ArrayAdapter hospitalsArrayAdapter;
+
 
     TextInputLayout staffTextInput;
     AutoCompleteTextView staffAutocomplete;
@@ -57,6 +61,8 @@ public class Appointment extends AppCompatActivity {
     private int staffSelected;
     private ProgressDialog progressBar;
     private int userID;
+
+    String fullTimeSet;
 
 
     @Override
@@ -111,6 +117,7 @@ public class Appointment extends AppCompatActivity {
 
 
 
+
         staffAutocomplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -136,11 +143,33 @@ public class Appointment extends AppCompatActivity {
                 selectingDate();
             }
         });
+//        timeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                timePicker1.setEnabled(true);
+//                int hour = timePicker1.getCurrentHour();
+//                int min = timePicker1.getCurrentMinute();
+//                Log.d("FDS", "hour is "+ String.valueOf(new StringBuilder(hour)));
+//            }
+//        });
+
+        timePicker1.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+//                Log.d("FDS", "hour is "+ timePicker1.getHour());
+//                Log.d("FDS", "hour is "+ timePicker1.getMinute());
+
+                fullTimeSet=timePicker1.getHour()+":"+timePicker1.getMinute();
+            }
+        });
+
+
+
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setAppointment(appointmentDate,hospitalSelected,staffSelected,appointmentDescription.getText().toString());
+                setAppointment(appointmentDate,hospitalSelected,staffSelected,appointmentDescription.getText().toString(),fullTimeSet);
             }
         });
 
@@ -154,6 +183,7 @@ public class Appointment extends AppCompatActivity {
 
     private void initialization(){
         dateButton=(MaterialButton)findViewById(R.id.chooseDate);
+        timeButton=(MaterialButton)findViewById(R.id.chooseTime);
 
         cancelButton=(MaterialButton)findViewById(R.id.cancel);
         confirmButton=(MaterialButton)findViewById(R.id.confirm);
@@ -165,49 +195,55 @@ public class Appointment extends AppCompatActivity {
         staffAutocomplete=(AutoCompleteTextView)findViewById(R.id.autoCompleteStaff);
 
         appointmentDescription=(TextInputEditText)findViewById(R.id.description);
+        timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
 
         hospitalList=new ArrayList<Hospital>();
         staffList=new ArrayList<Staff>();
     }
 
-    private void setAppointment(String appointmentDate, int hospitalSelected, int staffSelected, String appointmentDescription) {
+    private void setAppointment(String appointmentDate, int hospitalSelected, int staffSelected, String appointmentDescription,String time) {
 
         if(TextUtils.isEmpty(appointmentDate)){
             Toast.makeText(Appointment.this, "Please select a date", Toast.LENGTH_SHORT).show();
         }else{
-            final AppointmentClass appointment=new AppointmentClass();
-            appointment.setDate(appointmentDate);
-            appointment.setHospitalId(hospitalSelected);
-            appointment.setStaffId(staffSelected);
-            appointment.setDescription(appointmentDescription);
-            appointment.setStatus("0");
-            appointment.setUserId(userID);
+            if(TextUtils.isEmpty(time)){
+                Toast.makeText(Appointment.this, "Please pick time", Toast.LENGTH_SHORT).show();
+            }else{
+                final AppointmentClass appointment=new AppointmentClass();
+                appointment.setDate(appointmentDate);
+                appointment.setHospitalId(hospitalSelected);
+                appointment.setStaffId(staffSelected);
+                appointment.setDescription(appointmentDescription);
+                appointment.setStatus("0");
+                appointment.setUserId(userID);
 
-            progressBar.setTitle("Setting appointment");
-            progressBar.setMessage("Please wait...");
-            progressBar.setCanceledOnTouchOutside(true);
-            progressBar.show();
-            Call<AppointmentClass>newAppointment =jsonPlaceHolder.newAppointment(appointment);
+                progressBar.setTitle("Setting appointment");
+                progressBar.setMessage("Please wait...");
+                progressBar.setCanceledOnTouchOutside(true);
+                progressBar.show();
+                Call<AppointmentClass>newAppointment =jsonPlaceHolder.newAppointment(appointment);
 
-            newAppointment.enqueue(new Callback<AppointmentClass>() {
-                @Override
-                public void onResponse(Call<AppointmentClass> call, Response<AppointmentClass> response) {
+                newAppointment.enqueue(new Callback<AppointmentClass>() {
+                    @Override
+                    public void onResponse(Call<AppointmentClass> call, Response<AppointmentClass> response) {
 
 //                    Log.d("ds","resp: "+response.message());
-                    if(response.isSuccessful()){
+                        if(response.isSuccessful()){
 
 
-                        Toast.makeText(Appointment.this, "Appointment created!", Toast.LENGTH_SHORT).show();
-                        sendUserToHomeActivity();
+                            Toast.makeText(Appointment.this, "Appointment created!", Toast.LENGTH_SHORT).show();
+                            sendUserToHomeActivity();
+                        }
+                        progressBar.dismiss();
                     }
-                    progressBar.dismiss();
-                }
-                @Override
-                public void onFailure(Call<AppointmentClass> call, Throwable t) {
-                    Toast.makeText(Appointment.this, "Internal error!", Toast.LENGTH_SHORT).show();
-                    progressBar.dismiss();
-                }
-            });
+                    @Override
+                    public void onFailure(Call<AppointmentClass> call, Throwable t) {
+                        Toast.makeText(Appointment.this, "Internal error!", Toast.LENGTH_SHORT).show();
+                        progressBar.dismiss();
+                    }
+                });
+            }
+
         }
 
     }
