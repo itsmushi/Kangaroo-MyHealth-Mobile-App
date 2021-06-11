@@ -159,7 +159,7 @@ public class Appointment extends AppCompatActivity {
 //                Log.d("FDS", "hour is "+ timePicker1.getHour());
 //                Log.d("FDS", "hour is "+ timePicker1.getMinute());
 
-                fullTimeSet=timePicker1.getHour()+":"+timePicker1.getMinute();
+                fullTimeSet=timePicker1.getHour()+":"+timePicker1.getMinute()+":00";
             }
         });
 
@@ -215,6 +215,7 @@ public class Appointment extends AppCompatActivity {
                 appointment.setStaffId(staffSelected);
                 appointment.setDescription(appointmentDescription);
                 appointment.setStatus("0");
+                appointment.setAppointment_time(time);
                 appointment.setUserId(userID);
 
                 progressBar.setTitle("Setting appointment");
