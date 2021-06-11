@@ -12,7 +12,8 @@ import android.os.Bundle;
 import com.example.kangaroonew.Inbox;
 import com.example.kangaroonew.JsonApiPlaceholder;
 import com.example.kangaroonew.R;
-import com.example.kangaroonew.models.AppointmentClass;
+import com.example.kangaroonew.models.AppointmentWithName;
+import com.example.kangaroonew.models.AppointmentWithName;
 import com.example.kangaroonew.models.Staff;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -72,19 +73,19 @@ public class AppointmentDetails extends AppCompatActivity {
         progressBar.show();
 
 
-        final Call<List<AppointmentClass>> appointmentList=jsonPlaceHolder.userAppointments(userID);
-        appointmentList.enqueue(new Callback<List<AppointmentClass>>() {
+        final Call<List<AppointmentWithName>> appointmentList=jsonPlaceHolder.userAppointmentsFull(userID);
+        appointmentList.enqueue(new Callback<List<AppointmentWithName>>() {
 
             @Override
-            public void onResponse(Call<List<AppointmentClass>> call, Response<List<AppointmentClass>> response) {
+            public void onResponse(Call<List<AppointmentWithName>> call, Response<List<AppointmentWithName>> response) {
 
                 if(response.isSuccessful()){
 
-                    List<AppointmentClass> appointmentList=response.body();
+                    List<AppointmentWithName> appointmentList=response.body();
 
                    mobileArray=new String[appointmentList.size()];
                    String temp="";
-                    for(AppointmentClass appointment: appointmentList){
+                    for(AppointmentWithName appointment: appointmentList){
                         temp="Appointment at ";
                         temp+=appointment.getHospitalId().toString();  //send to API to get names values
                         temp+=" with "+appointment.getStaffId() ;
@@ -93,7 +94,7 @@ public class AppointmentDetails extends AppCompatActivity {
                         temp+=appointment.getDescription();
                         temp+="\n";
                         temp+="Date: "+appointment.getDate();
-                        temp+="  Time: "+appointment.getAppointment_time();
+                        temp+="  Time: "+appointment.getAppointmentTime()n;
 
                         //fill this appointment in array
                         mobileArray[appointmentList.indexOf(appointment)]=temp;
@@ -105,19 +106,17 @@ public class AppointmentDetails extends AppCompatActivity {
 
                     }
 
-
                     ArrayAdapter adapter = new ArrayAdapter<String>(context,
                             R.layout.list_view, mobileArray);
 
                     ListView listView = (ListView) findViewById(R.id.mobile_list);
                     listView.setAdapter(adapter);
                     progressBar.dismiss();
-
                 }
             }
 
             @Override
-            public void onFailure(Call<List<AppointmentClass>> call, Throwable t) {
+            public void onFailure(Call<List<AppointmentWithName>> call, Throwable t) {
                 progressBar.dismiss();
                 Toast.makeText(AppointmentDetails.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
 //                Log.d("Ds","status is NOT HERE");
