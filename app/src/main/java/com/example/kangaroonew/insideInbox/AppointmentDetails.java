@@ -94,7 +94,7 @@ public class AppointmentDetails extends AppCompatActivity {
                         temp+=appointment.getDescription();
                         temp+="\n";
                         temp+="Date: "+appointment.getDate();
-                        temp+="  Time: "+appointment.getAppointmentTime()n;
+                        temp+="  Time: "+appointment.getAppointmentTime();
 
                         //fill this appointment in array
                         mobileArray[appointmentList.indexOf(appointment)]=temp;
