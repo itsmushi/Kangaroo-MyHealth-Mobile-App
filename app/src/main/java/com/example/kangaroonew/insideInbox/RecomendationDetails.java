@@ -88,7 +88,7 @@ public class RecomendationDetails extends AppCompatActivity {
             public void onFailure(Call<List<Recommendation>> call, Throwable t) {
                 progressBar.dismiss();
                 Toast.makeText(RecomendationDetails.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
-//                Log.d("Ds","status is NOT HERE");
+//
             }
         });
     }

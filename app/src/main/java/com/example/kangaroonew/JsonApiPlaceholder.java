@@ -49,4 +49,7 @@ public interface JsonApiPlaceholder {
 
     @GET("getRecommendation/{id}")
     Call<List<Recommendation>> recommendation(@Path("id")int id);
+
+    @GET("getPregnancyDate/{id}")
+    Call<PregnancyDate> getPregDate(@Path("id")int id);
 }
