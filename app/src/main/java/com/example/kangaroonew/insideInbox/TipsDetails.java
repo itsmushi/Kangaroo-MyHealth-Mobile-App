@@ -12,6 +12,7 @@ import com.example.kangaroonew.JsonApiPlaceholder;
 import com.example.kangaroonew.R;
 import com.example.kangaroonew.models.PregnancyDate;
 import com.example.kangaroonew.models.Recommendation;
+import com.example.kangaroonew.models.Tip;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -39,7 +40,7 @@ public class TipsDetails extends AppCompatActivity {
 
         tipsText =findViewById(R.id.textTipsDetails);
         userID=getIntent().getExtras().getInt("userID");
-        tipsText.setText("Getting tip for Today...");
+
         Gson gson =new GsonBuilder().serializeNulls().create(); //makes gson take into account nulls when they are mentioned
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://kangaroobackend.herokuapp.com/api/")
@@ -52,6 +53,7 @@ public class TipsDetails extends AppCompatActivity {
         jsonPlaceHolder=retrofit.create(JsonApiPlaceholder.class);
 
         getTip();
+        tipsText.setText("Today's text \n");
 
     }
 
@@ -72,10 +74,29 @@ public class TipsDetails extends AppCompatActivity {
 
                     try {
                         Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);
-                        Log.d("j","date is:"+ date1.toString());
+
                        int weekNo= getWeekDiff(date1);
-//                        tipsText.setText(weekNo);
-                        Log.d("j","date is:"+ weekNo);
+
+                       Call<Tip> tip=jsonPlaceHolder.getTip(1);
+                       tip.enqueue(new Callback<Tip>() {
+                           @Override
+                           public void onResponse(Call<Tip> call, Response<Tip> response) {
+                               Log.d("j","date is: "+response.toString() );
+                               if(response.isSuccessful()){
+                                   String tipp=response.body().getDescription();
+                                   Log.d("j","date is:"+ tipp);
+                                   tipsText.append(tipp);
+                               }
+                           }
+
+                           @Override
+                           public void onFailure(Call<Tip> call, Throwable t) {
+                               Log.d("j","date is:"+ "tipp2");
+                               Toast.makeText(TipsDetails.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
+                           }
+                       });
+
+
 
                     } catch (ParseException e) {
                         e.printStackTrace();
