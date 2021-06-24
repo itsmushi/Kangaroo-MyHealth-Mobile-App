@@ -109,6 +109,9 @@ public class TipsDetails extends AppCompatActivity {
         if(weeks<1){    //if weeks are less than 1 return 1
             weeks=1;
         }
+        if(weeks>40){
+            weeks=40;
+        }
 
         return (int) weeks;
     }
