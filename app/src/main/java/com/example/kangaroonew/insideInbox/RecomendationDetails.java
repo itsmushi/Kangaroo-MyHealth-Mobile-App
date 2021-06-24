@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.List;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +27,8 @@ public class RecomendationDetails extends AppCompatActivity {
 
     TextView recommendationText;
     JsonApiPlaceholder jsonPlaceHolder;
+    final int min = 1;
+    final int max = 5;
 
     private ProgressDialog progressBar;
 
@@ -46,28 +50,37 @@ public class RecomendationDetails extends AppCompatActivity {
 
         jsonPlaceHolder=retrofit.create(JsonApiPlaceholder.class);
 
-        getRecommendation();
+        final int random = new Random().nextInt((max - min) + 1) + min;
+        getRecommendation(random);
     }
 
-    private void getRecommendation() {
+    private void getRecommendation(int recId) {
         progressBar=new ProgressDialog(this);
 
         progressBar.setTitle("Loading");
         progressBar.setMessage("Please wait...");
         progressBar.setCanceledOnTouchOutside(true);
         progressBar.show();
-        final Call<List<Recommendation>> recommendation=jsonPlaceHolder.recommendation(1);
+        final Call<List<Recommendation>> recommendation=jsonPlaceHolder.recommendation(recId);
         recommendation.enqueue(new Callback<List<Recommendation>>() {
             @Override
             public void onResponse(Call<List<Recommendation>> call, Response<List<Recommendation>> response) {
                 if(response.isSuccessful()){
+                    Log.d("Ds","status is "+recId);
                     List<Recommendation> recommendations=response.body();
+                    if(recommendations.size()<1){
+
+                        final int random = new Random().nextInt((max - min) + 1) + min;
+                        progressBar.dismiss();
+                        getRecommendation(random);
+                        return;
+                    }
                     for(Recommendation recommendation:recommendations){
                         String recomm=recommendation.getDescription();
                         recommendationText.setText(recomm);
                     }
 
-                }   
+                }
                 progressBar.dismiss();
             }
 
