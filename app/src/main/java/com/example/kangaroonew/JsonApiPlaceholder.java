@@ -26,7 +26,6 @@ public interface JsonApiPlaceholder {
     @GET("/oneStaff/{id}")
     Call<Staff> staffDetails(@Path("id")int id);
 
-
     @POST("createAppointment")
     Call<AppointmentClass> newAppointment(@Body AppointmentClass appointment);
 
@@ -48,4 +47,6 @@ public interface JsonApiPlaceholder {
     @GET("userDosage/{id}")
     Call<List<DosageData>> dosageData(@Path("id")int id);
 
+    @GET("getRecommendation/{id}")
+    Call<List<Recommendation>> recommendation(@Path("id")int id);
 }

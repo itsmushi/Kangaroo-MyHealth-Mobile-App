@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".insideInbox.RecomendationDetails">
+    android:background="#d692c2"
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <include
+            android:id="@+id/toolbarr"
+            layout="@layout/app_bar_layout3"
+
+            ></include>
+        <TextView
+            android:layout_below="@+id/toolbarr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recommendation"
+            android:textSize="36dp"
+            android:id="@+id/recomendationTitle"
+            android:textColor="@color/inboxTitles"
+            android:textStyle="bold"
+            android:textAlignment="center"
+
+            />
+    <TextView
+        android:id="@+id/textRecommendationDetails"
+       android:layout_below="@+id/recomendationTitle"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:textColor="@color/textHintColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
+</ScrollView>

@@ -16,6 +16,8 @@ import android.os.Bundle;
 import com.example.kangaroonew.insideInbox.AppointmentDetails;
 import com.example.kangaroonew.insideInbox.DosageDetails;
 import com.example.kangaroonew.insideInbox.MyHeathDetails;
+import com.example.kangaroonew.insideInbox.RecomendationDetails;
+import com.example.kangaroonew.insideInbox.TipsDetails;
 import com.example.kangaroonew.models.AppointmentClass;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,6 +36,8 @@ public class Inbox extends AppCompatActivity {
     private TextView appointmentText;
     private TextView myhealthText;
     private TextView dosageText;
+    private TextView recommendationText;
+    private TextView tipsText;
     JsonApiPlaceholder jsonPlaceHolder;
     private ProgressDialog progressBar;
     private LinearLayout appointmentLayout;
@@ -49,6 +53,8 @@ public class Inbox extends AppCompatActivity {
         appointmentText=findViewById(R.id.appointmentText);
         myhealthText=findViewById(R.id.myhealthtext);
         dosageText=findViewById(R.id.dosagetext);
+        tipsText=findViewById(R.id.tipstext);
+        recommendationText=findViewById(R.id.recommendationtext);
 
         Gson gson =new GsonBuilder().serializeNulls().create(); //makes gson take into account nulls when they are mentioned
         Retrofit retrofit = new Retrofit.Builder()
@@ -74,6 +80,20 @@ public class Inbox extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sendToMyHealthDetails();
+            }
+        });
+
+        recommendationText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendToRecommendationDetails();
+            }
+        });
+
+        tipsText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendToTipsDetails();
             }
         });
 
@@ -153,6 +173,18 @@ public class Inbox extends AppCompatActivity {
 
     private void sendToDosageDetails(){
         Intent inboxDetail=new Intent(this, DosageDetails.class);
+        inboxDetail.putExtra("userID",this.userID);
+        startActivity(inboxDetail);
+    }
+
+    private void sendToTipsDetails(){
+        Intent inboxDetail=new Intent(this, TipsDetails.class);
+        inboxDetail.putExtra("userID",this.userID);
+        startActivity(inboxDetail);
+    }
+
+    private void sendToRecommendationDetails(){
+        Intent inboxDetail=new Intent(this, RecomendationDetails.class);
         inboxDetail.putExtra("userID",this.userID);
         startActivity(inboxDetail);
     }
