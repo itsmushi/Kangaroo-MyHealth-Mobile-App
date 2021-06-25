@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kangaroonew.insideInbox.TipsDetails;
+import com.example.kangaroonew.models.BabyGrowth;
 import com.example.kangaroonew.models.PregnancyDate;
 import com.example.kangaroonew.models.Tip;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -57,6 +58,7 @@ public class Home extends AppCompatActivity {
         topAppBar=(MaterialToolbar)findViewById(R.id.topAppBar);
         setSupportActionBar(topAppBar);
         textView4=findViewById(R.id.textView4);
+        textView4.setText("Now it is week ");
 
 
        inboxBtn=(ImageButton)findViewById(R.id.inboxBtn);
@@ -179,22 +181,24 @@ appointmentIntent.putExtra("userID",this.userID);
 
                     int weekNo= getWeekDiff(date1);
 
-                    Call<Tip> tip=jsonPlaceHolder.getTip(1);
-                    tip.enqueue(new Callback<Tip>() {
+                    Call<BabyGrowth> tip=jsonPlaceHolder.getGrowth(weekNo);
+                    tip.enqueue(new Callback<BabyGrowth>() {
                         @Override
-                        public void onResponse(Call<Tip> call, Response<Tip> response) {
+                        public void onResponse(Call<BabyGrowth> call, Response<BabyGrowth> response) {
                             Log.d("j","date is: "+response.toString() );
                             if(response.isSuccessful()){
-                                String tipp=response.body().getDescription();
+                                String tipp=response.body().getStage();
                                 Log.d("j","date is:"+ tipp);
-                                tipsText.append(tipp);
+                                textView4.append(String.valueOf(weekNo));
+                                textView4.append("\nYour  baby is as big as "+ tipp);
+                                textView4.append("\n Countdown"+ String.valueOf(38-weekNo) +" left");
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<Tip> call, Throwable t) {
+                        public void onFailure(Call<BabyGrowth> call, Throwable t) {
                             Log.d("j","date is:"+ "tipp2");
-                            Toast.makeText(TipsDetails.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
+                            Toast.makeText(Home.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
                         }
                     });
 

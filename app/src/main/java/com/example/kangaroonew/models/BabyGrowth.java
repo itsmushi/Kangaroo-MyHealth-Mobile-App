@@ -1,8 +1,9 @@
-import javax.annotation.Generated;
+package com.example.kangaroonew.models;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
+
 public class BabyGrowth {
 
     @SerializedName("stage")

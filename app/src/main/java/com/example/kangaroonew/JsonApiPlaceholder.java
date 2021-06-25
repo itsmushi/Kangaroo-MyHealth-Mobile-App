@@ -55,4 +55,7 @@ public interface JsonApiPlaceholder {
 
     @GET("getTip/{id}")
     Call<Tip> getTip(@Path("id")int id);
+
+    @GET("getGrowth/{id}")
+    Call<BabyGrowth> getGrowth(@Path("id")int id);
 }

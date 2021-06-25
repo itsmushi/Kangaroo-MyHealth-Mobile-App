@@ -77,7 +77,7 @@ public class TipsDetails extends AppCompatActivity {
 
                        int weekNo= getWeekDiff(date1);
 
-                       Call<Tip> tip=jsonPlaceHolder.getTip(1);
+                       Call<Tip> tip=jsonPlaceHolder.getTip(weekNo);
                        tip.enqueue(new Callback<Tip>() {
                            @Override
                            public void onResponse(Call<Tip> call, Response<Tip> response) {
