@@ -35,50 +35,19 @@
             />
 
 
-            <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="Week 11, Day 1"
-                    android:textColor="@color/textHintColor"
-                    android:layout_marginTop="60dp"
-                    android:textSize="30sp"
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:textAlignment="center"
+            android:text="Week 11, Day 1"
+            android:textColor="@color/textHintColor"
+            android:textSize="30sp"
 
             />
-            <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Your baby is as big a lime"
-                    android:textColor="@color/textHintColor"
-                    android:layout_marginTop="5dp"
-                    android:layout_below="@id/textView4"
-                    android:textSize="30sp"/>
 
-            <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="Countdown"
-                    android:textColor="@color/textHintColor"
-                    android:layout_below="@id/textView5"
-                    android:layout_marginTop="10dp"
-                    android:textSize="30sp"
-
-            />
-            <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="28 weeks, 6 days left"
-                    android:textColor="@color/textHintColor"
-                    android:layout_marginTop="5dp"
-                    android:layout_below="@id/textView6"
-                    android:textSize="30sp"/>
 
             <!--        inbox and feedback-->
             <LinearLayout
