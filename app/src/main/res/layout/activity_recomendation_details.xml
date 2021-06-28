@@ -28,13 +28,32 @@
             android:textAlignment="center"
 
             />
-    <TextView
-        android:id="@+id/textRecommendationDetails"
-       android:layout_below="@+id/recomendationTitle"
-        android:textSize="30dp"
-        android:textAlignment="center"
-        android:textColor="@color/textHintColor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
+            android:layout_below="@+id/recomendationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+
+
+            android:layout_marginTop="20dp"
+
+            app:cardElevation="10dp"
+            android:backgroundTint="@color/cardview_light_background"
+
+            app:cardCornerRadius="10dp"
+            >
+            <!-- Card contents -->
+            <TextView
+                android:id="@+id/textRecommendationDetails"
+
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:textColor="@color/textHintColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.card.MaterialCardView>
+
+
 </RelativeLayout>
 </ScrollView>

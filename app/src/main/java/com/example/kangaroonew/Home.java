@@ -167,6 +167,10 @@ appointmentIntent.putExtra("userID",this.userID);
     }
 
     public void getHomeBabyGrowth(){
+        progressBar.setTitle("Loading");
+        progressBar.setMessage("Please wait...");
+        progressBar.setCanceledOnTouchOutside(true);
+        progressBar.show();
     final Call<PregnancyDate> pregDate=jsonPlaceHolder.getPregDate(userID);
         pregDate.enqueue(new Callback<PregnancyDate>() {
         @Override
@@ -191,14 +195,16 @@ appointmentIntent.putExtra("userID",this.userID);
                                 Log.d("j","date is:"+ tipp);
                                 textView4.append(String.valueOf(weekNo));
                                 textView4.append("\nYour  baby is as big as "+ tipp);
-                                textView4.append("\n Countdown "+ String.valueOf(38-weekNo) +" left");
+                                textView4.append("\n Countdown "+ String.valueOf(38-weekNo) +" weeks left");
+                                progressBar.dismiss();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<BabyGrowth> call, Throwable t) {
-                            Log.d("j","date is:"+ "tipp2");
+//                            Log.d("j","date is:"+ "tipp2");
                             Toast.makeText(Home.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
+                            progressBar.dismiss();
                         }
                     });
 

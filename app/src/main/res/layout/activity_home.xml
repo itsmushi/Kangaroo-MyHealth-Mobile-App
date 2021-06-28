@@ -30,7 +30,7 @@
                     android:id="@+id/view"
                     android:layout_below="@id/toolbarr"
                     android:layout_width="match_parent"
-                    android:layout_height="230dp"
+                    android:layout_height="220dp"
                     android:background="@color/homeBackgroundColor2"
             />
 

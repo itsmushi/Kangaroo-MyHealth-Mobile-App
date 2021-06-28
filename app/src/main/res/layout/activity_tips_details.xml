@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#d692c2"
     android:layout_width="match_parent" android:layout_height="match_parent">
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,7 +18,7 @@
 
             ></include>
         <TextView
-            android:layout_below="@+id/toolbarr"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tips"
@@ -28,15 +29,43 @@
             android:textAlignment="center"
 
             />
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    >
+
+    <com.google.android.material.card.MaterialCardView
+
+        android:id="@+id/card"
+        android:layout_margin="10dp"
+
+
+        android:layout_marginTop="20dp"
+
+        app:cardElevation="10dp"
+
+
+        app:cardCornerRadius="10dp"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/cardview_light_background"
+        android:layout_height="wrap_content">
+        <!-- Card contents -->
         <TextView
             android:id="@+id/textTipsDetails"
-            android:layout_below="@+id/recomendationTitle"
-            android:gravity="center"
+
+            android:text=""
 
             android:textSize="30dp"
             android:textAlignment="center"
             android:textColor="@color/textHintColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-    </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>
+
+    </LinearLayout>
 </ScrollView>
