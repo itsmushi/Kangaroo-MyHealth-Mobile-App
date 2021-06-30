@@ -332,7 +332,7 @@ public class Appointment extends AppCompatActivity {
 
     private void sendUserToHomeActivity() {
         Intent homeActivity=new Intent(this,Home.class);
-
+        homeActivity.putExtra("userID",this.userID);
 
         startActivity(homeActivity);
 

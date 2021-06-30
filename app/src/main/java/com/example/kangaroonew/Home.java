@@ -194,7 +194,7 @@ appointmentIntent.putExtra("userID",this.userID);
                                 String tipp=response.body().getStage();
                                 Log.d("j","date is:"+ tipp);
                                 textView4.append(String.valueOf(weekNo));
-                                textView4.append("\nYour  baby is as big as "+ tipp);
+                                textView4.append("\n"+ tipp);
                                 textView4.append("\n Countdown "+ String.valueOf(38-weekNo) +" weeks left");
                                 progressBar.dismiss();
                             }
