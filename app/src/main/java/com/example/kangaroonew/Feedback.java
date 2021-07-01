@@ -32,6 +32,8 @@ public class Feedback extends AppCompatActivity {
     Button submit;
     JsonApiPlaceholder jsonPlaceHolder;
     TextInputEditText comment;
+    RatingBar simpleRatingBar;
+
     private ProgressDialog progressBar;
     private boolean hospitalSelectedFlag=false;
 
@@ -42,6 +44,7 @@ public class Feedback extends AppCompatActivity {
 
         hospitalTextInput=(TextInputLayout)findViewById(R.id.menuHospital);
         hospitalAutocomplete=(AutoCompleteTextView)findViewById(R.id.autoCompleteHospital);
+        simpleRatingBar = (RatingBar) findViewById(R.id.simpleRatingBar);
         comment=(TextInputEditText)findViewById(R.id.commentInput);
         submit=(Button)findViewById(R.id.buttonSubmit);
         progressBar=new ProgressDialog(this);
@@ -91,6 +94,9 @@ public class Feedback extends AppCompatActivity {
                     newComment.setHospitalId(hosp.getId());
                     newComment.setComment(comment);
 
+                    double rating =simpleRatingBar.getRating();
+
+                    Toast.makeText(getApplicationContext(), rating + "\n" + rating, Toast.LENGTH_LONG).show();
                     progressBar.setTitle("Please wait");
                     progressBar.setMessage("Sending Feedback...");
                     progressBar.setCanceledOnTouchOutside(true);

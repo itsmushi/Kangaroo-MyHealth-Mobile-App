@@ -90,14 +90,26 @@
             />
 
         </com.google.android.material.textfield.TextInputLayout>
+        <RatingBar
+            android:layout_marginTop="10dp"
+            android:id="@+id/simpleRatingBar"
+            android:layout_below="@+id/menuHospital"
+            android:background="@android:color/background_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="2.5"
+            android:layout_centerHorizontal="true"
+            android:paddingHorizontal="5dp"
 
+            />
             <TextView
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textHintColor"
                     android:text="Comment"
-                    android:layout_below="@+id/menuHospital"
+                    android:layout_below="@+id/simpleRatingBar"
                     android:layout_marginTop="10dp"
                     android:textSize="30dp"
                  />
