@@ -25,6 +25,8 @@
     >
     </TextView>
 
+
+
     <ListView
             android:id="@+id/mobile_list"
             android:layout_width="match_parent"

@@ -95,7 +95,7 @@ public class Feedback extends AppCompatActivity {
                     newComment.setHospitalId(hosp.getId());
                     newComment.setRating(rating);
                     newComment.setComment(comment);
-                    
+
 
                     Toast.makeText(getApplicationContext(), rating + "\n" + rating, Toast.LENGTH_LONG).show();
                     progressBar.setTitle("Please wait");
