@@ -1,5 +1,6 @@
 package com.example.kangaroonew.insideInbox;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -13,6 +14,7 @@ import com.example.kangaroonew.R;
 import com.example.kangaroonew.models.AppointmentClass;
 import com.example.kangaroonew.models.BraceletData;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -41,6 +43,7 @@ public class MyHeathDetails extends AppCompatActivity {
     String[] mobileArray;
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,12 +62,21 @@ public class MyHeathDetails extends AppCompatActivity {
         entries.add(new Entry(24,23));
         entries.add(new Entry(16,8));
 
-        LineDataSet dataSet = new LineDataSet(entries, "Label"); // add entries to dataset
+        LineDataSet dataSet = new LineDataSet(entries, "Temperature"); // add entries to dataset
         dataSet.setColor(Color.RED);
-        dataSet.setValueTextColor(Color.GREEN); // styling, ..
+        dataSet.setValueTextColor(Color.BLACK); // styling, ..
 
-        chart.setBackgroundColor(Color.WHITE);
+        chart.setBackgroundColor(R.color.inboxTitles);
 
+
+        Description desc=new Description();
+        desc.setText("Graph for temperature");
+        desc.setTextSize(20);
+        chart.setDescription(desc);
+
+
+        chart.setNoDataText("No data recorded yet");
+        chart.setDrawBorders(true);
 
 
         LineData lineData = new LineData(dataSet);
