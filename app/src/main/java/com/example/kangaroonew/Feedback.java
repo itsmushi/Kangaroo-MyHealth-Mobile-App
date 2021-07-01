@@ -89,12 +89,13 @@ public class Feedback extends AppCompatActivity {
         for(Hospital hosp: hospitals1){
             if(hosp.getName().equals(hospital)){    //this is the hospital user selected
                 hospitalSelectedFlag=true;
+                double rating =simpleRatingBar.getRating();
                 if(!TextUtils.isEmpty(comment)){    //user actually put a comment
                     Comment newComment=new Comment();
                     newComment.setHospitalId(hosp.getId());
+                    newComment.setRating(rating);
                     newComment.setComment(comment);
-
-                    double rating =simpleRatingBar.getRating();
+                    
 
                     Toast.makeText(getApplicationContext(), rating + "\n" + rating, Toast.LENGTH_LONG).show();
                     progressBar.setTitle("Please wait");
