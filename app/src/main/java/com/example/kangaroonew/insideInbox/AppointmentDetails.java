@@ -55,7 +55,6 @@ public class AppointmentDetails extends AppCompatActivity {
     }
 
 
-
     private void checkingAppointments(final Context context) {
         progressBar=new ProgressDialog(this);
 

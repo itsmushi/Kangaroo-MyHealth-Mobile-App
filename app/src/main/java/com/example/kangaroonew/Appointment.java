@@ -40,6 +40,9 @@ public class Appointment extends AppCompatActivity {
     private String appointmentDate;
     private TimePicker timePicker1;
 
+    LinearLayout appointmentForm;
+    TextView appointment_set_text;
+
     TextInputLayout hospitalTextInput;
     AutoCompleteTextView hospitalAutocomplete;
     ArrayList hospitalList;
@@ -63,6 +66,8 @@ public class Appointment extends AppCompatActivity {
     private int userID;
 
     String fullTimeSet;
+
+
 
 
     @Override
@@ -196,6 +201,14 @@ public class Appointment extends AppCompatActivity {
 
         appointmentDescription=(TextInputEditText)findViewById(R.id.description);
         timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
+
+        appointmentForm=(LinearLayout)findViewById(R.id.appointmentForm);
+
+        appointment_set_text=(TextView)findViewById(R.id.appointment_set_text);
+
+        appointment_set_text.setVisibility(View.INVISIBLE);
+        appointmentForm.setVisibility(View.VISIBLE);
+
 
         hospitalList=new ArrayList<Hospital>();
         staffList=new ArrayList<Staff>();
@@ -337,6 +350,10 @@ public class Appointment extends AppCompatActivity {
         startActivity(homeActivity);
 
         finish();
+    }
+
+    private void checkUnattendedAppointment(){
+
     }
 
 

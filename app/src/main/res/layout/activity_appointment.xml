@@ -1,159 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
 
-        android:background="#D49BD8"
-        tools:context=".Appointment">
-<LinearLayout
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#D49BD8"
+    tools:context=".Appointment">
+    <include
+        android:id="@+id/toolbarr"
+        layout="@layout/app_bar_layout3"
+
+        ></include>
+
+    <TextView
+        android:layout_marginTop="10dp"
+android:layout_below="@+id/toolbarr"
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Book Appointment"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/inboxContent"
+        android:textSize="35dp"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:layout_below="@+id/title"
+        android:id="@+id/appointment_set_text"
+        android:visibility="visible"
+        android:textAlignment="center"
+        android:textColor="@color/inboxContent"
+        android:layout_height="wrap_content"
+        android:textSize="35dp"
+
+        android:text="You already set an appointment!"
+        />
+
+
+<ScrollView
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_below="@+id/title"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/appointmentForm"
+        android:layout_below="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
         android:orientation="vertical">
 
 
-    <include
-            android:id="@+id/toolbarr"
-            layout="@layout/app_bar_layout3"
-
-    ></include>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-    >
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="Book Appointment"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textStyle="bold"
-                android:textColor="@color/inboxContent"
-                android:textSize="35dp"
-
-        />
-    </LinearLayout>
-
-
-
         <com.google.android.material.button.MaterialButton
-                android:id="@+id/chooseDate"
-                android:layout_margin="20dp"
-                app:icon="@drawable/ic_date"
-                android:layout_gravity="center"
-                app:iconGravity="end"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:textSize="20dp"
-                android:layout_centerHorizontal="true"
-                app:backgroundTint="#95C9F1"
-                android:text="Choose Date" />
-
-    <com.google.android.material.button.MaterialButton
-            android:id="@+id/chooseTime"
-            android:layout_margin="10dp"
-            app:icon="@drawable/ic_time"
-            android:layout_gravity="center"
-            app:iconGravity="end"
+            android:id="@+id/chooseDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:textSize="20dp"
             android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:text="Choose Date"
+            android:textSize="20dp"
             app:backgroundTint="#95C9F1"
-            android:text="Pick Time" />
-    <TimePicker
+            app:icon="@drawable/ic_date"
+            app:iconGravity="end" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/chooseTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="Pick Time"
+            android:textSize="20dp"
+            app:backgroundTint="#95C9F1"
+            app:icon="@drawable/ic_time"
+            app:iconGravity="end" />
+
+
+        <TimePicker
             android:id="@+id/timePicker1"
             android:layout_width="wrap_content"
-            android:visibility="visible"
+            android:layout_height="wrap_content"
 
-            android:layout_height="wrap_content" />
-
+            android:visibility="visible" />
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:padding="20dp"
+            >
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/menuHospital2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginEnd="100dp"
+                android:backgroundTint="#191919"
+                android:hint="Hospital"
 
-                android:padding="20dp"
-
-
-        >
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/menuHospital2"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#191919"
-                    android:textColorHint="@color/inboxContent"
-                    android:layout_marginEnd="100dp"
-
-                    app:hintTextColor="@color/inboxContent"
-                    android:hint="Hospital">
+                android:textColorHint="@color/inboxContent"
+                app:hintTextColor="@color/inboxContent">
 
                 <AutoCompleteTextView
-                        android:id="@+id/autoCompleteHospital2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:textColor="@color/inboxContent"
-                />
+                    android:id="@+id/autoCompleteHospital2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:textColor="@color/inboxContent" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/menuStaff"
-                    android:layout_marginTop="30dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#191919"
-                    android:textColorHint="@color/inboxContent"
-                    android:layout_marginEnd="100dp"
+                android:id="@+id/menuStaff"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="100dp"
+                android:backgroundTint="#191919"
+                android:hint="Staff name"
 
-                    app:hintTextColor="@color/inboxContent"
-                    android:hint="Staff name">
+                android:textColorHint="@color/inboxContent"
+                app:hintTextColor="@color/inboxContent">
 
                 <AutoCompleteTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/autoCompleteStaff"
-                        android:inputType="none"
-                        android:textColor="@color/inboxContent"
-                />
+                    android:id="@+id/autoCompleteStaff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:textColor="@color/inboxContent" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textField"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/inboxContent"
-                    app:hintTextColor="@color/inboxContent"
-                    android:layout_marginTop="30dp"
+                android:id="@+id/textField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:hint="Appointment Description"
 
-                    android:layout_marginEnd="20dp"
-                    android:hint="Appointment Description">
+                android:textColorHint="@color/inboxContent"
+                app:hintTextColor="@color/inboxContent">
+
                 <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/description"
-                        android:backgroundTint="@color/inputBackground"
-                        android:padding="10dp"
-                        android:textColor="@color/inboxContent"
-                        android:lines="4"
-                        android:textAlignment="textStart"
-                        android:maxLines="4"
-                />
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/inputBackground"
+                    android:lines="4"
+                    android:maxLines="4"
+                    android:padding="10dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/inboxContent" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -161,46 +177,44 @@
 
 
         <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/confirm"
                 android:layout_width="wrap_content"
-                android:orientation="horizontal"
-
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="20dp"
-                android:layout_height="wrap_content">
-
-            <com.google.android.material.button.MaterialButton
-                    android:id="@+id/confirm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:textSize="20dp"
-                    android:layout_centerHorizontal="true"
-                    app:backgroundTint="#3DBC42"
-                    android:text="CONFIRM" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:text="CONFIRM"
+                android:textSize="20dp"
+                app:backgroundTint="#3DBC42" />
 
             <com.google.android.material.button.MaterialButton
-                    android:id="@+id/cancel"
-                    app:backgroundTint="#EA7767"
-                    android:textColor="@color/textHintColor"
-                    android:layout_marginStart="50dp"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:textSize="20dp"
-                    android:layout_marginRight="12dp"
+                android:id="@+id/cancel"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_toStartOf="@id/confirm"
+                android:text="CANCEL"
+                android:textColor="@color/textHintColor"
 
-                    android:layout_toStartOf="@id/confirm"
+                android:textSize="20dp"
 
 
-                    android:text="CANCEL" />
+                app:backgroundTint="#EA7767" />
 
         </RelativeLayout>
-</LinearLayout>
-
-    </ScrollView>
 
 
+    </LinearLayout>
+</ScrollView>
 
-
-
+</RelativeLayout>
