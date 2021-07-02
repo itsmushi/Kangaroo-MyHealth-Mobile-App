@@ -108,8 +108,6 @@ public class Inbox extends AppCompatActivity {
 
         checkingInbox();
 
-
-
     }
 
 

@@ -31,8 +31,7 @@ public class AppointmentDetails extends AppCompatActivity {
     JsonApiPlaceholder jsonPlaceHolder;
     private ProgressDialog progressBar;
     String[] mobileArray;
-//    = {"Android","IPhone","WindowsMobile","Blackberry",
-//            "WebOS","Ubuntu","Windows7","Max OS X"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +52,6 @@ public class AppointmentDetails extends AppCompatActivity {
 
         checkingAppointments(this);
 
-
-
-//        ArrayAdapter adapter = new ArrayAdapter<String>(this,
-//                R.layout.list_view, mobileArray);
-//
-//        ListView listView = (ListView) findViewById(R.id.mobile_list);
-//        listView.setAdapter(adapter);
     }
 
 
