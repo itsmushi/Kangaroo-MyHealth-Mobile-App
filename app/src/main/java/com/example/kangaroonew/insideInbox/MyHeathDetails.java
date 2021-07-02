@@ -97,49 +97,49 @@ public class MyHeathDetails extends AppCompatActivity {
                         entries_heart.add(new Entry(hr,Float.valueOf(appointment.getHeartRate())));
                         hr++;
 
-                        Log.d("dd","Reading is "+ appointment.getTemperature());
-                        Log.d("Da","Reading is "+appointment.getHeartRate());
 
                     }
+//                    Log.d("dd","Reading is "+ entries_heart);
 
+                    //for temp graph
                     LineDataSet dataSet_temp = new LineDataSet(entries_temp, "Temperature"); // add entries to dataset
-                    LineDataSet dataSet_heart = new LineDataSet(entries_heart, "Heart Rate");
-
                     dataSet_temp.setColor(Color.RED);
                     dataSet_temp.setValueTextColor(Color.BLACK); // styling, ..
-
-                    dataSet_heart.setColor(Color.RED);
-                    dataSet_heart.setValueTextColor(Color.BLACK); // styling, ..
-
-
                     chart_temp.setBackgroundColor(R.color.inboxTitles);
-                    chart_heart.setBackgroundColor(R.color.inboxTitles);
 
                     Description desc_temp=new Description();
                     desc_temp.setText("Graph for temperature");
                     desc_temp.setTextSize(20);
                     chart_temp.setDescription(desc_temp);
 
+                    chart_temp.setNoDataText("No data recorded yet");
+                    chart_temp.setDrawBorders(true);
+                    LineData line_temp = new LineData(dataSet_temp);
+                    chart_temp.setData(line_temp);
+                    chart_temp.invalidate(); // refresh
+
+
+
+                    //for heart graph
+                    LineDataSet dataSet_heart = new LineDataSet(entries_heart, "Heart Rate");
+                    dataSet_heart.setColor(Color.RED);
+                    dataSet_heart.setValueTextColor(Color.BLACK); // styling, ..
+
+                    chart_heart.setBackgroundColor(R.color.inboxTitles);
+
                     Description desc_heart=new Description();
                     desc_heart.setText("Graph for Heart Rate");
                     desc_heart.setTextSize(20);
                     chart_heart.setDescription(desc_heart);
 
-
-                    chart_temp.setNoDataText("No data recorded yet");
                     chart_heart.setNoDataText("No data recorded yet");
 
-                    chart_temp.setDrawBorders(true);
                     chart_heart.setDrawBorders(true);
 
-
-                    LineData line_temp = new LineData(dataSet_temp);
                     LineData line_heart = new LineData(dataSet_heart);
 
-                    chart_temp.setData(line_temp);
-                    chart_temp.setData(line_heart);
+                    chart_heart.setData(line_heart);
 
-                    chart_temp.invalidate(); // refresh
                     chart_heart.invalidate(); // refresh
 
 
