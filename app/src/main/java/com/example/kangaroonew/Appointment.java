@@ -68,8 +68,7 @@ public class Appointment extends AppCompatActivity {
 
     String fullTimeSet;
 
-
-
+    boolean appointmentFound=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +76,12 @@ public class Appointment extends AppCompatActivity {
         setContentView(R.layout.activity_appointment);
 
         initialization();
+
+        checkUnattendedAppointment();
         userID=getIntent().getExtras().getInt("userID");
         progressBar=new ProgressDialog(this);
 
-        progressBar.setTitle("Loading");
-        progressBar.setMessage("Please wait...");
-        progressBar.setCanceledOnTouchOutside(true);
-        progressBar.show();
+
 
 
 
@@ -96,10 +94,6 @@ public class Appointment extends AppCompatActivity {
 
         //create interface reference
         jsonPlaceHolder=retrofit.create(JsonApiPlaceholder.class);
-
-
-        fillHospitals();
-
 
 
         hospitalAutocomplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -208,7 +202,7 @@ public class Appointment extends AppCompatActivity {
         appointment_set_text=(TextView)findViewById(R.id.appointment_set_text);
 
         appointment_set_text.setVisibility(View.INVISIBLE);
-        appointmentForm.setVisibility(View.VISIBLE);
+        appointmentForm.setVisibility(View.INVISIBLE);
 
 
         hospitalList=new ArrayList<Hospital>();
@@ -290,6 +284,10 @@ public class Appointment extends AppCompatActivity {
     }
 
     private void fillHospitals() {
+        progressBar.setTitle("Loading");
+        progressBar.setMessage("Please wait...");
+        progressBar.setCanceledOnTouchOutside(true);
+        progressBar.show();
         final Call<List<Hospital>> hospitals=jsonPlaceHolder.allHospital();
 
         hospitals.enqueue(new Callback<List<Hospital>>() {
@@ -359,8 +357,10 @@ public class Appointment extends AppCompatActivity {
         progressBar.setMessage("Please wait...");
         progressBar.setCanceledOnTouchOutside(true);
         progressBar.show();
+
+
          //checking if any of the user's appointment has been accepted
-            final Call<List<AppointmentWithName>> appointmentList=jsonPlaceHolder.userAppointmentsFull(userID);
+            final Call<List<AppointmentWithName>> appointmentList=jsonPlaceHolder.userPendingAppointmentsFull(userID);
             appointmentList.enqueue(new Callback<List<AppointmentWithName>>() {
                 @Override
                 public void onResponse(Call<List<AppointmentWithName>> call, Response<List<AppointmentWithName>> response) {
@@ -374,15 +374,20 @@ public class Appointment extends AppCompatActivity {
                             if(TextUtils.equals(appointment.getStatus(),"0")){//the appointment is pending  ie waiting for the result
                                 Log.d("sdf","response is "+appointment.getDate());
                                 String txt="Your appointment is on ";
-                                appointmentText.setText(txt+appointment.getDate());
-
-
+                                appointmentFound=true;
                                 break;
                             }
                         }
-                        if(!found){ //appointment not accepted
-                            appointmentText.setText("There is no appointment to attend yet!");
+
+                        if(!appointmentFound){
+                            appointment_set_text.setVisibility(View.INVISIBLE);
+                            appointmentForm.setVisibility(View.VISIBLE);
+                            fillHospitals();
+                        }else{
+                            appointment_set_text.setVisibility(View.VISIBLE);
+                            appointmentForm.setVisibility(View.INVISIBLE);
                         }
+
                     }
                     progressBar.dismiss();
 
