@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -34,13 +35,16 @@ public class MyHeathDetails extends AppCompatActivity {
 
 
 
-    LineChart chart;
+    LineChart chart_temp;
+    LineChart chart_heart;
+
 
     int userID;
     JsonApiPlaceholder jsonPlaceHolder;
     private ProgressDialog progressBar;
+    List<Entry> entries_temp = new ArrayList<Entry>();
+    List<Entry> entries_heart = new ArrayList<Entry>();
 
-    String[] mobileArray;
 
 
     @SuppressLint("ResourceAsColor")
@@ -49,41 +53,10 @@ public class MyHeathDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_heath_details);
 
-        chart = (LineChart) findViewById(R.id.chart);
+        chart_temp = (LineChart) findViewById(R.id.chart_temp);
+        chart_heart = (LineChart) findViewById(R.id.chart_heart);
 
         userID=getIntent().getExtras().getInt("userID");
-
-
-        List<Entry> entries = new ArrayList<Entry>();
-        entries.add(new Entry(10,6));
-        entries.add(new Entry(5,4));
-        entries.add(new Entry(13,15));
-        entries.add(new Entry(15,16));
-        entries.add(new Entry(24,23));
-        entries.add(new Entry(16,8));
-
-        LineDataSet dataSet = new LineDataSet(entries, "Temperature"); // add entries to dataset
-        dataSet.setColor(Color.RED);
-        dataSet.setValueTextColor(Color.BLACK); // styling, ..
-
-        chart.setBackgroundColor(R.color.inboxTitles);
-
-
-        Description desc=new Description();
-        desc.setText("Graph for temperature");
-        desc.setTextSize(20);
-        chart.setDescription(desc);
-
-
-        chart.setNoDataText("No data recorded yet");
-        chart.setDrawBorders(true);
-
-
-        LineData lineData = new LineData(dataSet);
-        chart.setData(lineData);
-        chart.invalidate(); // refresh
-
-
 
 
 
@@ -96,12 +69,8 @@ public class MyHeathDetails extends AppCompatActivity {
 
         jsonPlaceHolder=retrofit.create(JsonApiPlaceholder.class);
 
-checkingBracelet(this);
-//        ArrayAdapter adapter = new ArrayAdapter<String>(this,
-//                R.layout.list_view, mobileArray);
-//
-//        ListView listView = (ListView) findViewById(R.id.mobile_list);
-//        listView.setAdapter(adapter);
+    checkingBracelet(this);
+
     }
 
     private void checkingBracelet(final Context context) {
@@ -114,29 +83,66 @@ checkingBracelet(this);
 //        final Call<List<AppointmentClass>> appointmentList=jsonPlaceHolder.userAppointments(userID);
         final Call<List<BraceletData>> braceletData=jsonPlaceHolder.braceletData(userID);
         braceletData.enqueue(new Callback<List<BraceletData>>() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onResponse(Call<List<BraceletData>> call, Response<List<BraceletData>> response) {
                 if(response.isSuccessful()){
                     List<BraceletData> appointmentList=response.body();
-                    mobileArray=new String[appointmentList.size()];
-                    String temp="";
+
+
+                    int hr=1;
                     for(BraceletData appointment: appointmentList){
-                        temp="Temperature is "+appointment.getTemperature()+"\n";
-                        temp+="Heart rate is "+appointment.getHeartRate();
 
+                        entries_temp.add(new Entry(hr, Float.valueOf(appointment.getTemperature())));
+                        entries_heart.add(new Entry(hr,Float.valueOf(appointment.getHeartRate())));
+                        hr++;
 
-                        //fill this appointment in array
-                        mobileArray[appointmentList.indexOf(appointment)]=temp;
+                        Log.d("dd","Reading is "+ appointment.getTemperature());
+                        Log.d("Da","Reading is "+appointment.getHeartRate());
 
-                        //set temp to empty for next loop
-                        temp="";
                     }
 
-                    ArrayAdapter adapter = new ArrayAdapter<String>(context,
-                            R.layout.list_view, mobileArray);
+                    LineDataSet dataSet_temp = new LineDataSet(entries_temp, "Temperature"); // add entries to dataset
+                    LineDataSet dataSet_heart = new LineDataSet(entries_heart, "Heart Rate");
 
-                    ListView listView = (ListView) findViewById(R.id.mobile_list);
-                    listView.setAdapter(adapter);
+                    dataSet_temp.setColor(Color.RED);
+                    dataSet_temp.setValueTextColor(Color.BLACK); // styling, ..
+
+                    dataSet_heart.setColor(Color.RED);
+                    dataSet_heart.setValueTextColor(Color.BLACK); // styling, ..
+
+
+                    chart_temp.setBackgroundColor(R.color.inboxTitles);
+                    chart_heart.setBackgroundColor(R.color.inboxTitles);
+
+                    Description desc_temp=new Description();
+                    desc_temp.setText("Graph for temperature");
+                    desc_temp.setTextSize(20);
+                    chart_temp.setDescription(desc_temp);
+
+                    Description desc_heart=new Description();
+                    desc_heart.setText("Graph for Heart Rate");
+                    desc_heart.setTextSize(20);
+                    chart_heart.setDescription(desc_heart);
+
+
+                    chart_temp.setNoDataText("No data recorded yet");
+                    chart_heart.setNoDataText("No data recorded yet");
+
+                    chart_temp.setDrawBorders(true);
+                    chart_heart.setDrawBorders(true);
+
+
+                    LineData line_temp = new LineData(dataSet_temp);
+                    LineData line_heart = new LineData(dataSet_heart);
+
+                    chart_temp.setData(line_temp);
+                    chart_temp.setData(line_heart);
+
+                    chart_temp.invalidate(); // refresh
+                    chart_heart.invalidate(); // refresh
+
+
                     progressBar.dismiss();
                 }
             }
