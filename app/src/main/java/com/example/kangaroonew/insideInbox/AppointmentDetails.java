@@ -78,6 +78,7 @@ public class AppointmentDetails extends AppCompatActivity {
                    mobileArray=new String[appointmentList.size()];
                    String temp="";
                     for(AppointmentWithName appointment: appointmentList){
+
                         temp="Appointment at ";
                         temp+=appointment.getHospitalId().toString();  //send to API to get names values
                         temp+=" with "+appointment.getStaffId() ;
@@ -85,16 +86,13 @@ public class AppointmentDetails extends AppCompatActivity {
                         temp+="Description: "+"\n";
                         temp+=appointment.getDescription();
                         temp+="\n";
+                        temp+="Appointment Status: "+ getAppointmentStatus(Integer.valueOf(appointment.getStatus()));
+                        temp+="\n";
                         temp+="Date: "+appointment.getDate();
                         temp+="  Time: "+appointment.getAppointmentTime();
 
                         //fill this appointment in array
                         mobileArray[appointmentList.indexOf(appointment)]=temp;
-
-                        //set temp to empty for next loop
-                        temp="";
-
-
 
                     }
 
@@ -115,42 +113,18 @@ public class AppointmentDetails extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 
 
-    private String getStaffName(int id){
-        final Call<Staff> staff=jsonPlaceHolder.staffDetails(id);
-
-        try {
-            Response<Staff> response= staff.execute();
-            Log.d("d","error here11");
-            Staff staff1=response.body();
-                 name=staff1.getFname()+" "+staff1.getLname();
-            Log.d("d","error here22");
-
-        } catch (IOException e) {
-            Log.d("d","error here");
-            e.printStackTrace();
+    private String getAppointmentStatus(int statusCode){
+        String status="";
+        if(statusCode==1){
+            status="Attended";
+        }else if(statusCode==2){
+            status="Denied";
         }
-//        staff.enqueue(new Callback<Staff>() {
-//            @Override
-//            public void onResponse(Call<Staff> call, Response<Staff> response) {
-//                if(response.isSuccessful()){
-//                    Staff staff1=response.body();
-//                 name=staff1.getFname()+" "+staff1.getLname();
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Staff> call, Throwable t) {
-//
-//            }
-//        });
-        return name;
-
+        return status;
     }
+
+
 }
