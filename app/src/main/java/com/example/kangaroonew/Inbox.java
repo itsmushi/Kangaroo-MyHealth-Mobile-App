@@ -113,47 +113,6 @@ public class Inbox extends AppCompatActivity {
 
 
     private void checkingInbox() {
-        progressBar=new ProgressDialog(this);
-        progressBar.setTitle("Loading");
-        progressBar.setMessage("Please wait...");
-        progressBar.setCanceledOnTouchOutside(true);
-//        progressBar.show();
-//         //checking if any of the user's appointment has been accepted
-//            final Call<List<AppointmentClass>> appointmentList=jsonPlaceHolder.userAppointments(userID);
-//            appointmentList.enqueue(new Callback<List<AppointmentClass>>() {
-//
-//                @Override
-//                public void onResponse(Call<List<AppointmentClass>> call, Response<List<AppointmentClass>> response) {
-//
-//                    if(response.isSuccessful()){
-//
-//                        List<AppointmentClass> appointmentList=response.body();
-//                        for(AppointmentClass appointment: appointmentList){
-//
-//                            Log.d("Ds","status is "+appointment.getStatus());
-//                            if(TextUtils.equals(appointment.getStatus(),"1")){//the appointment is accepted
-//                                Log.d("sdf","response is "+appointment.getDate());
-//                                String txt="Your appointment is on ";
-//                                appointmentText.setText(txt+appointment.getDate());
-//                                found=true;
-//                            }
-//                        }
-//                        if(!found){ //appointment not accepted
-//                            appointmentText.setText("There is no appointment to attend yet!");
-//                        }
-//                    }
-//                    progressBar.dismiss();
-//
-//                }
-//
-//                @Override
-//                public void onFailure(Call<List<AppointmentClass>> call, Throwable t) {
-//                    found=true;
-//                    Toast.makeText(Inbox.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
-////                    Log.d("Ds","status is NOT HERE");
-//                    progressBar.dismiss();
-//                }
-//            });
 
     }
 

@@ -10,6 +10,7 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.kangaroonew.models.AppointmentClass;
+import com.example.kangaroonew.models.AppointmentWithName;
 import com.example.kangaroonew.models.Hospital;
 import com.example.kangaroonew.models.Staff;
 import com.google.android.material.button.MaterialButton;
@@ -353,6 +354,48 @@ public class Appointment extends AppCompatActivity {
     }
 
     private void checkUnattendedAppointment(){
+        progressBar=new ProgressDialog(this);
+        progressBar.setTitle("Loading");
+        progressBar.setMessage("Please wait...");
+        progressBar.setCanceledOnTouchOutside(true);
+        progressBar.show();
+         //checking if any of the user's appointment has been accepted
+            final Call<List<AppointmentWithName>> appointmentList=jsonPlaceHolder.userAppointmentsFull(userID);
+            appointmentList.enqueue(new Callback<List<AppointmentWithName>>() {
+                @Override
+                public void onResponse(Call<List<AppointmentWithName>> call, Response<List<AppointmentWithName>> response) {
+
+                    if(response.isSuccessful()){
+
+                        List<AppointmentWithName> appointmentList=response.body();
+                        for(AppointmentWithName appointment: appointmentList){
+
+                            Log.d("Ds","status is "+appointment.getStatus());
+                            if(TextUtils.equals(appointment.getStatus(),"0")){//the appointment is pending  ie waiting for the result
+                                Log.d("sdf","response is "+appointment.getDate());
+                                String txt="Your appointment is on ";
+                                appointmentText.setText(txt+appointment.getDate());
+
+
+                                break;
+                            }
+                        }
+                        if(!found){ //appointment not accepted
+                            appointmentText.setText("There is no appointment to attend yet!");
+                        }
+                    }
+                    progressBar.dismiss();
+
+                }
+
+                @Override
+                public void onFailure(Call<List<AppointmentWithName>> call, Throwable t) {
+
+                    Toast.makeText(Appointment.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
+//                    Log.d("Ds","status is NOT HERE");
+                    progressBar.dismiss();
+                }
+            });
 
     }
 

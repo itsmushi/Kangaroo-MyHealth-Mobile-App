@@ -41,6 +41,9 @@ public interface JsonApiPlaceholder {
     @GET("userAppointmentsFull/{id}")
     Call<List<AppointmentWithName>> userAppointmentsFull(@Path("id")int id);
 
+    @GET("userPendingAppointments/{id}")
+    Call<List<AppointmentWithName>> userPendingAppointmentsFull(@Path("id")int id);
+
     @GET("userBraceletData/{id}")
     Call<List<BraceletData>> braceletData(@Path("id")int id);
 
