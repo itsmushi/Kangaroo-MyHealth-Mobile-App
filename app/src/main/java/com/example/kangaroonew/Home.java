@@ -189,10 +189,10 @@ appointmentIntent.putExtra("userID",this.userID);
                     tip.enqueue(new Callback<BabyGrowth>() {
                         @Override
                         public void onResponse(Call<BabyGrowth> call, Response<BabyGrowth> response) {
-                            Log.d("j","date is: "+response.toString() );
+
                             if(response.isSuccessful()){
                                 String tipp=response.body().getStage();
-                                Log.d("j","date is:"+ tipp);
+
                                 textView4.append(String.valueOf(weekNo));
                                 textView4.append("\n"+ tipp);
                                 textView4.append("\n Countdown "+ String.valueOf(38-weekNo) +" weeks left");
@@ -202,7 +202,6 @@ appointmentIntent.putExtra("userID",this.userID);
 
                         @Override
                         public void onFailure(Call<BabyGrowth> call, Throwable t) {
-//                            Log.d("j","date is:"+ "tipp2");
                             Toast.makeText(Home.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
                             progressBar.dismiss();
                         }

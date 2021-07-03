@@ -77,12 +77,9 @@ public class Appointment extends AppCompatActivity {
 
         initialization();
 
-        checkUnattendedAppointment();
+
         userID=getIntent().getExtras().getInt("userID");
         progressBar=new ProgressDialog(this);
-
-
-
 
 
         Gson gson =new GsonBuilder().serializeNulls().create(); //makes gson take into account nulls when they are mentioned
@@ -94,6 +91,9 @@ public class Appointment extends AppCompatActivity {
 
         //create interface reference
         jsonPlaceHolder=retrofit.create(JsonApiPlaceholder.class);
+
+        checkUnattendedAppointment();
+
 
 
         hospitalAutocomplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -115,9 +115,6 @@ public class Appointment extends AppCompatActivity {
             }
         });
 
-
-
-
         staffAutocomplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -129,8 +126,6 @@ public class Appointment extends AppCompatActivity {
                 }
             }
         });
-
-
 
         hospitalsArrayAdapter=new ArrayAdapter<>(getApplicationContext(),R.layout.list_item,hospitalList);
         hospitalAutocomplete.setAdapter(hospitalsArrayAdapter);
@@ -364,12 +359,12 @@ public class Appointment extends AppCompatActivity {
             appointmentList.enqueue(new Callback<List<AppointmentWithName>>() {
                 @Override
                 public void onResponse(Call<List<AppointmentWithName>> call, Response<List<AppointmentWithName>> response) {
-
+                    Log.d("","in the loop1");
                     if(response.isSuccessful()){
-
+                        Log.d("","in the loop2");
                         List<AppointmentWithName> appointmentList=response.body();
                         for(AppointmentWithName appointment: appointmentList){
-
+                            Log.d("","in the loop");
                             Log.d("Ds","status is "+appointment.getStatus());
                             if(TextUtils.equals(appointment.getStatus(),"0")){//the appointment is pending  ie waiting for the result
                                 Log.d("sdf","response is "+appointment.getDate());
@@ -378,18 +373,18 @@ public class Appointment extends AppCompatActivity {
                                 break;
                             }
                         }
-
+                        progressBar.dismiss();
                         if(!appointmentFound){
-                            appointment_set_text.setVisibility(View.INVISIBLE);
-                            appointmentForm.setVisibility(View.VISIBLE);
+//                            appointment_set_text.setVisibility(View.INVISIBLE);
+//                            appointmentForm.setVisibility(View.VISIBLE);
                             fillHospitals();
                         }else{
-                            appointment_set_text.setVisibility(View.VISIBLE);
-                            appointmentForm.setVisibility(View.INVISIBLE);
+//                            appointment_set_text.setVisibility(View.VISIBLE);
+//                            appointmentForm.setVisibility(View.INVISIBLE);
                         }
 
                     }
-                    progressBar.dismiss();
+
 
                 }
 
