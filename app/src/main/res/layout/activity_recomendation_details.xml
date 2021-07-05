@@ -46,8 +46,8 @@
             <!-- Card contents -->
             <TextView
                 android:id="@+id/textRecommendationDetails"
-
-                android:textSize="30dp"
+                android:padding="10dp"
+                android:textSize="20dp"
                 android:textAlignment="center"
                 android:textColor="@color/textHintColor"
                 android:layout_width="match_parent"
