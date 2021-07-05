@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,8 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kangaroonew.insideInbox.TipsDetails;
+import com.example.kangaroonew.models.AppointmentWithName;
 import com.example.kangaroonew.models.BabyGrowth;
+import com.example.kangaroonew.models.Hospital;
 import com.example.kangaroonew.models.PregnancyDate;
+import com.example.kangaroonew.models.Staff;
 import com.example.kangaroonew.models.Tip;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.gson.Gson;
@@ -25,8 +29,10 @@ import com.google.gson.GsonBuilder;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,6 +51,8 @@ public class Home extends AppCompatActivity {
     TextView textView4;
     private ProgressDialog progressBar;
 
+
+    boolean appointmentFound=false;
     MaterialToolbar topAppBar;
 
     JsonApiPlaceholder jsonPlaceHolder;
@@ -86,6 +94,7 @@ public class Home extends AppCompatActivity {
         feedbackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 sendToFeedbackActivity();
             }
         });
@@ -99,7 +108,8 @@ public class Home extends AppCompatActivity {
         appointmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendToAppointmentActivity();
+                checkUnattendedAppointment();
+
             }
         });
 
@@ -130,6 +140,8 @@ public class Home extends AppCompatActivity {
     }
 
     private void sendToAppointmentActivity() {
+
+
         Intent appointmentIntent=new Intent(this,Appointment.class);
 appointmentIntent.putExtra("userID",this.userID);
         startActivity(appointmentIntent);
@@ -228,12 +240,60 @@ appointmentIntent.putExtra("userID",this.userID);
 
 }
 
-    private void startCheckingAppointmentStatus() {
-//        Log.d("df","going to"+  userID);
-//        Intent appointmentStatus=new Intent(this,AppointmentStatus.class);
-//        appointmentStatus.putExtra("userID",this.userID);
 
-//        startService(appointmentStatus);
+    private void checkUnattendedAppointment(){
+        progressBar=new ProgressDialog(this);
+        progressBar.setTitle("Loading");
+        progressBar.setMessage("Please wait...");
+        progressBar.setCanceledOnTouchOutside(true);
+        progressBar.show();
+
+        //checking if any of the user's appointment has been accepted
+        final Call<List<AppointmentWithName>> appointmentList=jsonPlaceHolder.userPendingAppointmentsFull(userID);
+        appointmentList.enqueue(new Callback<List<AppointmentWithName>>() {
+            @Override
+            public void onResponse(Call<List<AppointmentWithName>> call, Response<List<AppointmentWithName>> response) {
+
+                if(response.isSuccessful()){
+                    List<AppointmentWithName> appointmentList=response.body();
+                    for(AppointmentWithName appointment: appointmentList){
+
+                        Log.d("Ds","status is "+appointment.getStatus());
+                        if(TextUtils.equals(appointment.getStatus(),"0")){//the appointment is pending  ie waiting for the result
+
+                            String txt="Your appointment is on ";
+                            appointmentFound=true;
+                            break;
+                        }
+                    }
+
+                    progressBar.dismiss();
+                    if(!appointmentFound){
+                        sendToAppointmentActivity();
+                    }else{
+                        sendToPendingAppointmentActivity();
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<AppointmentWithName>> call, Throwable t) {
+
+                Toast.makeText(Home.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
+//                    Log.d("Ds","status is NOT HERE");
+                progressBar.dismiss();
+            }
+        });
+
+    }
+
+    private void sendToPendingAppointmentActivity() {
+        Intent homeActivity=new Intent(this,PendingAppointment.class);
+        homeActivity.putExtra("userID",this.userID);
+        startActivity(homeActivity);
+        finish();
     }
 
 }

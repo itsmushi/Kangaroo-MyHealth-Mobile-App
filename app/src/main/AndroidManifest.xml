@@ -12,16 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".insideInbox.TipsDetails"></activity>
+        <activity android:name=".PendingAppointment"></activity>
+        <activity android:name=".insideInbox.TipsDetails" />
         <activity android:name=".insideInbox.RecomendationDetails" />
         <activity android:name=".insideInbox.DosageDetails" />
         <activity android:name=".insideInbox.MyHeathDetails" />
         <activity android:name=".insideInbox.AppointmentDetails" />
-
-        <service
-            android:name=".AppointmentStatus"
-            android:exported="false" />
-
         <activity android:name=".Appointment" />
         <activity android:name=".Inbox" />
         <activity android:name=".Feedback" />

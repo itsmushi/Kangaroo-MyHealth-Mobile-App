@@ -50,6 +50,7 @@ public class Appointment extends AppCompatActivity {
     List<Hospital> hospitals1;
     ArrayAdapter hospitalsArrayAdapter;
 
+    private boolean hospitalSelectedFlag=false;
 
     TextInputLayout staffTextInput;
     AutoCompleteTextView staffAutocomplete;
@@ -60,7 +61,7 @@ public class Appointment extends AppCompatActivity {
     TextInputEditText appointmentDescription;
 
     JsonApiPlaceholder jsonPlaceHolder;
-    private boolean hospitalSelectedFlag=false;
+
     private int hospitalSelected;
     private int staffSelected;
     private ProgressDialog progressBar;
@@ -68,15 +69,14 @@ public class Appointment extends AppCompatActivity {
 
     String fullTimeSet;
 
-    boolean appointmentFound=false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment);
 
-        initialization();
-
+        Log.d("","in the loop5 hrereee");
 
         userID=getIntent().getExtras().getInt("userID");
         progressBar=new ProgressDialog(this);
@@ -92,9 +92,12 @@ public class Appointment extends AppCompatActivity {
         //create interface reference
         jsonPlaceHolder=retrofit.create(JsonApiPlaceholder.class);
 
-        checkUnattendedAppointment();
+
+        initialization();
 
 
+
+        fillHospitals();
 
         hospitalAutocomplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -192,16 +195,10 @@ public class Appointment extends AppCompatActivity {
         appointmentDescription=(TextInputEditText)findViewById(R.id.description);
         timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
 
-        appointmentForm=(LinearLayout)findViewById(R.id.appointmentForm);
-
-        appointment_set_text=(TextView)findViewById(R.id.appointment_set_text);
-
-        appointment_set_text.setVisibility(View.INVISIBLE);
-        appointmentForm.setVisibility(View.INVISIBLE);
-
-
         hospitalList=new ArrayList<Hospital>();
         staffList=new ArrayList<Staff>();
+
+
     }
 
     private void setAppointment(String appointmentDate, int hospitalSelected, int staffSelected, String appointmentDescription,String time) {
@@ -346,58 +343,8 @@ public class Appointment extends AppCompatActivity {
         finish();
     }
 
-    private void checkUnattendedAppointment(){
-        progressBar=new ProgressDialog(this);
-        progressBar.setTitle("Loading");
-        progressBar.setMessage("Please wait...");
-        progressBar.setCanceledOnTouchOutside(true);
-        progressBar.show();
 
 
-         //checking if any of the user's appointment has been accepted
-            final Call<List<AppointmentWithName>> appointmentList=jsonPlaceHolder.userPendingAppointmentsFull(userID);
-            appointmentList.enqueue(new Callback<List<AppointmentWithName>>() {
-                @Override
-                public void onResponse(Call<List<AppointmentWithName>> call, Response<List<AppointmentWithName>> response) {
-                    Log.d("","in the loop1");
-                    if(response.isSuccessful()){
-                        Log.d("","in the loop2");
-                        List<AppointmentWithName> appointmentList=response.body();
-                        for(AppointmentWithName appointment: appointmentList){
-                            Log.d("","in the loop");
-                            Log.d("Ds","status is "+appointment.getStatus());
-                            if(TextUtils.equals(appointment.getStatus(),"0")){//the appointment is pending  ie waiting for the result
-                                Log.d("sdf","response is "+appointment.getDate());
-                                String txt="Your appointment is on ";
-                                appointmentFound=true;
-                                break;
-                            }
-                        }
-                        progressBar.dismiss();
-                        if(!appointmentFound){
-//                            appointment_set_text.setVisibility(View.INVISIBLE);
-//                            appointmentForm.setVisibility(View.VISIBLE);
-                            fillHospitals();
-                        }else{
-//                            appointment_set_text.setVisibility(View.VISIBLE);
-//                            appointmentForm.setVisibility(View.INVISIBLE);
-                        }
-
-                    }
-
-
-                }
-
-                @Override
-                public void onFailure(Call<List<AppointmentWithName>> call, Throwable t) {
-
-                    Toast.makeText(Appointment.this,"Failed to load, error occured!",Toast.LENGTH_LONG).show();
-//                    Log.d("Ds","status is NOT HERE");
-                    progressBar.dismiss();
-                }
-            });
-
-    }
 
 
 }

@@ -32,19 +32,6 @@ android:layout_below="@+id/toolbarr"
         android:textSize="35dp"
 
         />
-    <TextView
-        android:layout_width="match_parent"
-        android:textStyle="bold"
-        android:layout_below="@+id/title"
-        android:id="@+id/appointment_set_text"
-        android:visibility="visible"
-        android:textAlignment="center"
-        android:textColor="@color/inboxContent"
-        android:layout_height="wrap_content"
-        android:textSize="35dp"
-
-        android:text="You already set an appointment!"
-        />
 
 
 <ScrollView
