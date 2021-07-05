@@ -28,7 +28,11 @@
 
 
     <ListView
+        android:layout_marginVertical="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="10dp"
             android:id="@+id/mobile_list"
+        android:dividerHeight="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
     </ListView>
