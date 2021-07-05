@@ -40,7 +40,7 @@
         android:textColor="@color/inboxContent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
-        
+
         android:text="You already set an appointment!"
         />
 

@@ -5,6 +5,10 @@
           android:layout_height="fill_parent"
           android:padding="10dip"
           android:textSize="16dip"
+android:layout_marginVertical="12dp"
+    android:layout_marginHorizontal="10dp"
+   android:background="@drawable/rounded_corner"
+
           android:textColor="@color/inboxTitles"
           android:textStyle="bold" >
 
