@@ -4,7 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D49BD8"
+    android:orientation="vertical"
     tools:context=".PendingAppointment">
+
+    <include
+        android:id="@+id/toolbarr"
+        layout="@layout/app_bar_layout3"
+
+        ></include>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/toolbarr"
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Book Appointment"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/inboxContent"
+        android:textSize="35dp"
+
+        />
 
     <TextView
         android:layout_width="match_parent"
