@@ -9,7 +9,6 @@
         android:background="#FFF">
 
 
-
     <RelativeLayout
 
             android:layout_width="match_parent"
@@ -31,7 +30,7 @@
                     android:layout_below="@id/toolbarr"
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
-                    android:background="@color/homeBackgroundColor2"
+                    android:background="@drawable/home_text_background"
             />
 
 
@@ -67,10 +66,10 @@
                             android:orientation="vertical">
                         <ImageButton
                                 android:id="@+id/inboxBtn"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:layout_width="144dp"
+                                android:layout_height="133dp"
                                 android:layout_gravity="center"
-                                android:background="@drawable/roundcorner"
+                                android:background="@drawable/home_buttons"
 
                                 app:srcCompat="@drawable/ic_mail"
 
@@ -101,11 +100,11 @@
                             android:orientation="vertical">
                         <ImageButton
                                 android:id="@+id/feedbackBtn"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:layout_width="133dp"
+                                android:layout_height="138dp"
                                 android:layout_gravity="center"
-                                android:background="@drawable/roundcorner"
-                                app:srcCompat="@drawable/ic_feedback"
+                                android:background="@drawable/home_buttons"
+                            app:srcCompat="@drawable/ic_feedback"
 
                         />
 
@@ -150,10 +149,10 @@
                             android:orientation="vertical">
                         <ImageButton
                                 android:id="@+id/appointmentBtn"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                            android:layout_width="144dp"
+                            android:layout_height="133dp"
                                 android:layout_gravity="center"
-                                android:background="@drawable/roundcorner"
+                                android:background="@drawable/home_buttons"
                                 app:srcCompat="@drawable/ic_appointment"
 
                         />
@@ -185,10 +184,10 @@
                             android:orientation="vertical">
                         <ImageButton
                                 android:id="@+id/shareBtn"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                            android:layout_width="133dp"
+                            android:layout_height="138dp"
                                 android:layout_gravity="center"
-                                android:background="@drawable/roundcorner"
+                                android:background="@drawable/home_buttons"
                                 app:srcCompat="@drawable/ic_share"
 
                         />
