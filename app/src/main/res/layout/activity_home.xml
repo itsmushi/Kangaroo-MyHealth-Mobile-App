@@ -56,6 +56,7 @@
             android:layout_below="@id/view"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="20dp"
             android:orientation="horizontal">
 
             <!--        for inbox-->
@@ -125,83 +126,78 @@
 
         </LinearLayout>
         <!--        schedule and share-->
-                <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/inbox_feedback_layer"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="101dp"
+            android:orientation="horizontal">
 
-                        android:layout_marginTop="100dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/inbox_feedback_layer"
-                >
-
-                    <!--        for Schedule appointment-->
-                    <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+            <!--        for Schedule appointment-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
 
-                            android:orientation="vertical">
-                        <ImageButton
-                                android:id="@+id/appointmentBtn"
-                            android:layout_width="144dp"
-                            android:layout_height="133dp"
-                                android:layout_gravity="center"
-                                android:background="@drawable/home_buttons"
-                                app:srcCompat="@drawable/ic_appointment"
+                android:orientation="vertical">
 
-                        />
+                <ImageButton
+                    android:id="@+id/appointmentBtn"
+                    android:layout_width="144dp"
+                    android:layout_height="133dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/home_buttons"
+                    app:srcCompat="@drawable/ic_appointment"
 
-
-
-                        <TextView
-
-                                android:id="@+id/textView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Appointment"
-                                android:layout_gravity="center"
-                                android:textColor="@color/textHintColor"
-                                android:textSize="20dp"
-                        />
+                    />
 
 
+                <TextView
+
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Appointment"
+                    android:textColor="@color/textHintColor"
+                    android:textSize="20dp" />
 
 
-                    </LinearLayout>
+            </LinearLayout>
 
-                    <!--        for Share-->
-                    <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+            <!--        for Share-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-                            android:layout_marginStart="100dp"
-                            android:orientation="vertical">
-                        <ImageButton
-                                android:id="@+id/shareBtn"
-                            android:layout_width="133dp"
-                            android:layout_height="138dp"
-                                android:layout_gravity="center"
-                                android:background="@drawable/home_buttons"
-                                app:srcCompat="@drawable/ic_share"
+                android:layout_marginStart="100dp"
+                android:orientation="vertical">
 
-                        />
+                <ImageButton
+                    android:id="@+id/shareBtn"
+                    android:layout_width="133dp"
+                    android:layout_height="138dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/home_buttons"
+                    app:srcCompat="@drawable/ic_share"
+
+                    />
 
 
-                        <TextView
+                <TextView
 
-                                android:id="@+id/share"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Share"
-                                android:layout_gravity="center"
-                                android:textColor="@color/textHintColor"
-                                android:textSize="20dp"
-                        />
+                    android:id="@+id/share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Share"
+                    android:textColor="@color/textHintColor"
+                    android:textSize="20dp" />
 
-                    </LinearLayout>
+            </LinearLayout>
 
-                </LinearLayout>
+        </LinearLayout>
 
 
     </RelativeLayout>
