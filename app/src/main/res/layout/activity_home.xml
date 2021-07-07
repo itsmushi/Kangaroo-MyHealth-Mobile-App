@@ -43,7 +43,7 @@
             android:textAlignment="center"
             android:text="Week 11, Day 1"
             android:textColor="@color/textHintColor"
-            android:textSize="30sp"
+            android:textSize="26sp"
 
             />
 
@@ -68,8 +68,8 @@
 
                 <ImageButton
                     android:id="@+id/inboxBtn"
-                    android:layout_width="144dp"
-                    android:layout_height="133dp"
+                    android:layout_width="125dp"
+                    android:layout_height="110dp"
                     android:layout_gravity="center"
                     android:background="@drawable/home_buttons"
 
@@ -86,7 +86,7 @@
                     android:text="Inbox"
 
                     android:textColor="@color/textHintColor"
-                    android:textSize="20dp" />
+                    android:textSize="16dp"  />
 
 
             </LinearLayout>
@@ -94,15 +94,15 @@
             <!--        for Feedback-->
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="130dp"
 
                 android:layout_marginStart="100dp"
                 android:orientation="vertical">
 
                 <ImageButton
                     android:id="@+id/feedbackBtn"
-                    android:layout_width="133dp"
-                    android:layout_height="138dp"
+                    android:layout_width="135dp"
+                    android:layout_height="110dp"
                     android:layout_gravity="center"
                     android:background="@drawable/home_buttons"
                     app:srcCompat="@drawable/ic_feedback"
@@ -118,7 +118,7 @@
                     android:layout_gravity="center"
                     android:text="Feedback"
                     android:textColor="@color/textHintColor"
-                    android:textSize="20dp" />
+                    android:textSize="16dp" />
 
 
             </LinearLayout>
@@ -144,8 +144,8 @@
 
                 <ImageButton
                     android:id="@+id/appointmentBtn"
-                    android:layout_width="144dp"
-                    android:layout_height="133dp"
+                    android:layout_width="125dp"
+                    android:layout_height="110dp"
                     android:layout_gravity="center"
                     android:background="@drawable/home_buttons"
                     app:srcCompat="@drawable/ic_appointment"
@@ -161,7 +161,7 @@
                     android:layout_gravity="center"
                     android:text="Appointment"
                     android:textColor="@color/textHintColor"
-                    android:textSize="20dp" />
+                    android:textSize="16dp"  />
 
 
             </LinearLayout>
@@ -176,8 +176,8 @@
 
                 <ImageButton
                     android:id="@+id/shareBtn"
-                    android:layout_width="133dp"
-                    android:layout_height="138dp"
+                    android:layout_width="135dp"
+                    android:layout_height="110dp"
                     android:layout_gravity="center"
                     android:background="@drawable/home_buttons"
                     app:srcCompat="@drawable/ic_share"
@@ -193,7 +193,7 @@
                     android:layout_gravity="center"
                     android:text="Share"
                     android:textColor="@color/textHintColor"
-                    android:textSize="20dp" />
+                    android:textSize="16dp" />
 
             </LinearLayout>
 

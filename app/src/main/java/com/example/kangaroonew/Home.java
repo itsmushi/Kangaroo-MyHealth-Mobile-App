@@ -155,7 +155,7 @@ appointmentIntent.putExtra("userID",this.userID);
 
     private void sendToFeedbackActivity() {
         Intent feedbackIntent=new Intent(this,Feedback.class);
-
+        feedbackIntent.putExtra("userID",this.userID);
         startActivity(feedbackIntent);
     }
 

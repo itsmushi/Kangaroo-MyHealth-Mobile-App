@@ -3,6 +3,7 @@ package com.example.kangaroonew;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +37,7 @@ public class Feedback extends AppCompatActivity {
 
     private ProgressDialog progressBar;
     private boolean hospitalSelectedFlag=false;
+    private int userID=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,9 @@ public class Feedback extends AppCompatActivity {
         simpleRatingBar = (RatingBar) findViewById(R.id.simpleRatingBar);
         comment=(TextInputEditText)findViewById(R.id.commentInput);
         submit=(Button)findViewById(R.id.buttonSubmit);
+
+        userID=getIntent().getExtras().getInt("userID");
+
         progressBar=new ProgressDialog(this);
 
         progressBar.setTitle("Loading");
@@ -111,7 +116,11 @@ public class Feedback extends AppCompatActivity {
                             if(response.isSuccessful()){
                                 Toast.makeText(Feedback.this, "Feedback received", Toast.LENGTH_SHORT).show();
                                 sendUserToHomeActivity();
+                            }else{
+                                Log.d("d","rrrrr"+response.toString());
                             }
+
+
                             progressBar.dismiss();
                         }
 
@@ -165,6 +174,7 @@ public class Feedback extends AppCompatActivity {
 
     private void sendUserToHomeActivity() {
         Intent homeActivity=new Intent(this,Home.class);
+        homeActivity.putExtra("userID",userID);
         startActivity(homeActivity);
         finish();
     }
