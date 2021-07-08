@@ -293,7 +293,7 @@ appointmentIntent.putExtra("userID",this.userID);
         Intent homeActivity=new Intent(this,PendingAppointment.class);
         homeActivity.putExtra("userID",this.userID);
         startActivity(homeActivity);
-        finish();
+
     }
 
 }
