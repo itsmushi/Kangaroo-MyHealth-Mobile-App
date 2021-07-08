@@ -80,7 +80,7 @@
 
         <TextView
 
-                android:text="See past appoinetments here"
+                android:text="See past appointments here"
                 android:id="@+id/appointmentText"
 
                 android:textSize="20dp"
