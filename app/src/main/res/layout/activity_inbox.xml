@@ -137,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:text="Dosage"
 
-                android:height="30dp"
+                android:height="34dp"
                 android:textStyle="bold"
                 android:textSize="25dp"
                 android:paddingStart="30dp"
