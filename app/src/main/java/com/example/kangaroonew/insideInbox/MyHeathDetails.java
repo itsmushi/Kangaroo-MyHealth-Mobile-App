@@ -97,12 +97,12 @@ public class MyHeathDetails extends AppCompatActivity {
                         entries_heart.add(new Entry(hr,Float.valueOf(appointment.getHeartRate())));
                         hr++;
 
-
                     }
 //                    Log.d("dd","Reading is "+ entries_heart);
 
                     //for temp graph
-                    LineDataSet dataSet_temp = new LineDataSet(entries_temp, "Temperature"); // add entries to dataset
+                    char tmp = 0x00B0;
+                    LineDataSet dataSet_temp = new LineDataSet(entries_temp, "Temperature(in "+tmp+"C)"); // add entries to dataset
                     dataSet_temp.setColor(Color.RED);
                     dataSet_temp.setValueTextColor(Color.BLACK); // styling, ..
                     chart_temp.setBackgroundColor(R.color.inboxTitles);
@@ -121,7 +121,7 @@ public class MyHeathDetails extends AppCompatActivity {
 
 
                     //for heart graph
-                    LineDataSet dataSet_heart = new LineDataSet(entries_heart, "Heart Rate");
+                    LineDataSet dataSet_heart = new LineDataSet(entries_heart, "Heart Rate (in BPM)");
                     dataSet_heart.setColor(Color.RED);
                     dataSet_heart.setValueTextColor(Color.BLACK); // styling, ..
 
